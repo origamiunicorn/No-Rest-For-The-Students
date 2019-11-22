@@ -6,27 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>No rest for the students API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
 </head>
 
 <body>
-    <header>API</header>
-    <div id="apiButtons">
-            <form class="example" action="action_page.php">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search">Submit</i></button>
-                  </form>
-        <input type="radio" name="gender" value="news"> Newa
-    <input type="radio" name="gender" value="youtube"> Youtube
-    <input type="radio" name="gender" value="wikapidia"> wikapidia 
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <header>API</header>
+                <div id="apiButtons">
+                    <form class="example" action="action_page.php">
+                        <input type="text" placeholder=" Search for an event by keyword(s)..." name="search">
+                        <button type="submit"><i class="fa fa-search">Submit</i></button>
+                    </form>
+                    <input type="radio" name="current" value="news"> Current Events
+                    <input type="radio" name="historical" value="historical"> Historical Events
+                    <input type="radio" name="wikipedia" value="wikapidia"> Wikipedia
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </div>
-    
+    <section class="section">
+        <article class="message is-link">
+            <div class="message-header">
+                Current Articles
+            </div>
+            <div class="message-body current-articles">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.
+            </div>
+        </article>
+    </section>
+
     <div id="youtube stuff">
 
     </div>
 
     <div id="News"></div>
+
 </body>
 
 </html>
