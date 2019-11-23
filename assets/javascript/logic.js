@@ -71,3 +71,24 @@ $.ajax({
     console.log(response)
     $('#new-news').append(response.articles)
 })
+
+
+var queryWiki = "https://en.wikipedia.org/w/api.php";
+
+var params = {
+    action: "query",
+    list: "search",
+    srsearch: "Nelson Mandela",
+    format: "json"
+};
+
+url = queryWiki + "?origin=*";
+url += $.param(params);
+
+$.ajax({
+    url: url,
+    method: "GET"
+}).then(function (response) {
+    console.log(response.query.search);
+    $('#new-news').append(response.articles)
+});
