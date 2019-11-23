@@ -114,16 +114,17 @@ $.ajax({
 }).then(function (response) {
     //console.log(response.query.search);
     var results = response.query.search;
+    $('.current-articles').empty();
     $.each(results, function (index, value) {
         var wikiArticle = $("<article class='message is-info'>");
-        $('#wikiId').append(wikiArticle);
+        $('.current-articles').append(wikiArticle);
         var colDiv = $("<div class='columns'>");
         colDiv.append("<div class='column is-12'><h1 class='title'>" + results[index].title + "</h1></div>");
         var msgDiv = $("<div class='message-body'>" + results[index].snippet + "</div>");
         $(wikiArticle).append(colDiv, msgDiv);
         $(wikiArticle).append("<br />");
         $(wikiArticle).append("<a href='https://en.wikipedia.org/wiki/" + results[index].title + "' target='_blank'>" + results[index].title + "</a>");
-        $('#wikiId').append("<hr />");
+        $('.current-articles').append("<hr />");
     });
 });
 
