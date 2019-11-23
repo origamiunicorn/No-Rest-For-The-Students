@@ -145,6 +145,53 @@ $(document).ready(function () {
         });
     });
 
+    /**
+     * code to display videos
+     */
+
+    var playerInfoList = [];
+    $.ajax({
+        method: 'GET',
+        url: 'https://www.googleapis.com/youtube/v3/search?',
+        data: {
+            q: 'Nelson Mandela',
+            part: 'snippet',
+            key: 'AIzaSyDvZJroibDl30fxnmsNsCZO1o-9N-Em5zs',
+            maxResults: 6
+        },
+        dataType: 'jsonp'
+    }).then(function (response) {
+        var results = response.items;
+        $.each(results, function (index, value) {
+            var videoObj = {
+                id: 'player',
+                height: '390',
+                width: '640',
+                videoId: results[index].id.videoId
+            }
+            playerInfoList.push(videoObj);
+        });
+        onYouTubePlayerAPIReady();
+
+        function onYouTubePlayerAPIReady() {
+            for (var i = 0; i < playerInfoList.length; i++) {
+                console.log(playerInfoList[i].videoId);
+                player = new YT.Player('player' + [i], {
+                    height: '360',
+                    width: '640',
+                    videoId: playerInfoList[i].videoId
+                });
+            }
+        }
+    });
+
+    // This code loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
     /*
     Modals!
     */
