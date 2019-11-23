@@ -11,8 +11,8 @@
     margin-right: 5px;
 }
 
-@media screen and (min-width: 480px) {
-    .buttonContainer {
-        text-align: center;
+  @media screen and (max-width: 768px) {
+    .childButtonContainer {
+        justify-content: center;
     }
   }
