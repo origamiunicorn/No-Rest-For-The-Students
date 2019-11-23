@@ -5,30 +5,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>No rest for the students API</title>
+    <title>On Topic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
 <body>
-    <header>API</header>
-    <div id="apiButtons">
-            <form class="example" action="action_page.php">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit"><i class="fa fa-search">Submit</i></button>
-                  </form>
-        <input type="radio" name="news" value="news"> Newa
-    <input type="radio" name="videos" value="youtube"> Youtube
-    <input type="radio" name="wiki" value="wikapidia"> wikapidia 
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-9 has-text-left-desktop has-text-centered-touch topHeader">
+                        <h1 class="title is-1">
+                            <img src="assets/images/news.png" class="headerImage" />
+                            On Topic
+                        </h1>
+                    </div>
+                    <div class="column is-3 has-text-right-desktop has-text-centered-touch topButtons">
+                        <button class="button is-rounded">Sign Up</button>
+                        <button class="button is-primary is-rounded">Log In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    
+    <section class="section">
+        <div class="container" style="margin-bottom: 7px;">
+            <div class="field is-grouped">
+                <div class="control is-expanded is-hidden-desktop has-icons-left">
+                    <input class="input search-bar" type="text" placeholder="Search for an event..."
+                        name="search"></input>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+                <div class="control is-hidden-touch">
+                    <input class="input" type="text" placeholder="Search for an event..." name="search"> </input>
+                </div>
+                <div class="control">
+                    <a class="button search-btn is-info">
+                        Search
+                    </a>
+                </div>
+            </div>
+            <div class="control has-text-centered-mobile">
+                <label class="radio">
+                    <input type="radio" name="searchBy" value="currentNews" checked>
+                    Current Events
+                    </input>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="searchBy" value="historicalEvents">
+                    Historical Events
+                    </input>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="searchBy" value="wikipediaInfo">
+                    Wikipedia
+                    </input>
+                </label>
+            </div>
+        </div>
 
-    </div>
-    
-    <div id="youtube stuff">
+        <div class="container buttonContainer">
+            <div class="buttons">
+                <p class="control">
+                    <button class="button is-link randomButton fact-btn" value="factOfDay">
+                        <span class="icon is-small">
+                            <i class="fas fa-book"></i>
+                        </span>
+                        <span>
+                            Fact of the Day
+                        </span>
+                    </button>
+                </p>
+                <p class="control">
+                    <button class="button is-info randomButton nasa-btn" value="imageOfDay">
+                        <span class="icon is-small">
+                            <i class="fas fa-rocket"></i>
+                        </span>
+                        <span>
+                            NASA Image of the Day
+                        </span>
+                    </button>
+                </p>
+            </div>
+        </div>
 
-    </div>
+        <div class="container">
+            <article class="message is-dark">
+                <div class="message-header">
+                    <p>Related Articles</p>
+                    <button class="button" id="plusButton">
+                        <span class="icon is-small">
+                            <i class="fas fa-plus-circle"></i>
+                        </span>
+                    </button>
+                    <button class="button" id="minusButton" style="display: none;">
+                        <span class="icon is-small">
+                            <i class="fas fa-minus-circle"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="message-body current-articles">
+                    <article class="message is-info">
+                        <div class="columns">
+                            <div class="column is-1 article-img">
+                                <!-- <img src="https://picsum.photos/id/970/128/128" /> -->
+                            </div>
+                            <div class="column is-11 article-info">
+                                <!-- <h1 class="title">Article Title</h1>
+                                <h2 class="subtitle">by Some Author</h2> -->
+                            </div>
+                        </div>
+                        <div class="message-body article-snippet">
+                            <!-- I am a snippet of information from an article. Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                            ut
+                            aliquip
+                            ex ea commodo consequat. -->
+                        </div>
+                        <br />
+                        <div class='article-link'></div>
+                        <!-- <a href="#">Link to Article.</a> -->
+                    </article>
+                    <hr />
+                    <article class="message is-info">
+                        <div class="columns">
+                            <div class="column is-1">
+                                <img src="https://picsum.photos/id/970/128/128" />
+                            </div>
+                            <div class="column is-11">
+                                <h1 class="title">Article Title</h1>
+                                <h2 class="subtitle">by Some Author</h2>
+                            </div>
+                        </div>
+                        <div class="message-body">
+                            I am a snippet of information from an article. Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                            ut
+                            aliquip
+                            ex ea commodo consequat.
+                        </div>
+                        <br />
+                        <a href="#">Link to Article.</a>
+                    </article>
+                </div>
+                <div id="wikiId" class="message-body current-articles"></div>
+        </div>
+        </article>
+        <br />
+        <div class="container">
+            <article class="message is-dark">
+                <div class="message-header">
+                    Related Videos
+                </div>
+                <div class="message-body video-pulls">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip
+                    ex ea commodo consequat.
+                </div>
+            </article>
+        </div>
+    </section>
 
-    <div id="News"></div>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                This is a <strong>Footer</strong>!
+            </p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="assets/javascript/logic.js"></script>
 </body>
 
 </html>
