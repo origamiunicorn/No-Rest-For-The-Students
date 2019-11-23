@@ -7,10 +7,12 @@ var current = 'latest-news?'
 var startDate; //Will have to have YYYY-MM-dd format 
 var endDate; // Will have to have YYYY-MM-dd format 
 var type; //Will be an integer: 1 for news, 2 for articles, 3 for discussion content, Default 1
-var keyword = 'keywords='
+
 var lang = '&language=en'
 
-var queryURL = 'https://api.currentsapi.services/v1/' + historical + lang + apikey;
+var queryURL = 'https://api.currentsapi.services/v1/' + current + lang + apikey;
+
+
 
 $.ajax({
     url: queryURL,
@@ -18,14 +20,19 @@ $.ajax({
 }).then(function (response) {
     console.log(response);
     //We also want to make the response.news.published into a moment so that we can format it and display it
-    if (response.news.image !== 'none') {
-        $('#new-news').append('<h1 class="article-title">' + response.news[6].title + '</h1>' + '<h3 class=article-by> By ' + response.news[6].author + '</h3>' + '<img src="' + response.news[5].image + '">' + '<br>' + '<a href="' + response.news[6].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>')
-    }                //For styling purposes ^^
+    // if (response.news.image !== 'none') {
+    //     $('.article-img').append('<img src="' + response.news[3].image + '">');
+    //     $('.article-info').append('<h1 class="article-title">' + response.news[3].title + '</h1>' + '<h3 class=article-by> By ' + response.news[3].author + '</h3>')
+    //     $('.article-snippet').append('<p>' + response.news[3].description + '</p>')
+    //     $('.article-link').append('<a href="' + response.news[3].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>')
+    // }
 
 
 
 
 });
+
+
 
 //From the response we can grab the image as the thumbnail and the url for the link added and the description + published date + Author
 /*var apiNasa = 'Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1'
@@ -60,17 +67,30 @@ $.ajax({
 })
 */
 
+/*
+Code to query the NewsAPI
+*/
+
+
 var sortBy = '&sortBy='
 var apiNews = '&apiKey=c2704563e1294b96ae07dbe18fda2af6'
-var queryNews = 'https://newsapi.org/v2/everything?q=' + 'bitcoin' + sortBy + 'popularity' + apiNews
+var keyword = $('.search-input').val()
+var queryNews = 'https://newsapi.org/v2/top-headlines?country=us' + apiNews
 
-$.ajax({
-    url: queryNews,
-    method: "GET"
-}).then(function (response) {
-    console.log(response)
-    $('#new-news').append(response.articles)
-})
+$('.search-btn').on('click', function () {
+    $.ajax({
+        url: queryNews,
+        method: "GET"
+    }).then(function (response) {
+        console.log(response)
+        $('.article-img').append('<img src="' + response.articles[3].urlToImage + '">');
+        $('.article-info').append('<h1 class="article-title">' + response.articles[3].title + '</h1>' + '<h3 class=article-by> By ' + response.articles[3].author + '</h3>')
+        $('.article-snippet').append('<p>' + response.articles[3].description + '</p>')
+        $('.article-link').append('<a href="' + response.articles[3].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>')
+
+    })
+
+});
 
 
 /**
@@ -106,3 +126,14 @@ $.ajax({
         $('#wikiId').append("<hr />");
     });
 });
+
+/*
+Modals!
+*/
+
+$(document).ready(function () {
+    $('.nasa-btn').on('click', function () {
+        $('.nasa-modal').attr('class', 'is-active')
+        $('.nasa-modal').attr('class', 'is-clipped')
+    })
+})
