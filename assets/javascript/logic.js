@@ -1,4 +1,12 @@
-
+// Get on-click radio button value
+$("input[type='button']").click(function () {
+    var retrieveSearch = $("input[name='search']").val();
+    var searchValue = retrieveSearch;
+    console.log("this is the searchValue in the on click: " + searchValue);
+    retrieveSearch.val("");
+    var radioValue = $("input[name='searchBy']:checked").val();
+    console.log("this is the radioValue on the on-click: " + radioValue);
+})
 
 
 var apikey = '&apiKey=DZDcAWMI7tHZgDL-0HsY9xdV2PP2WERqSJ4RodnZ84DGyEwJ';
