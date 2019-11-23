@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>No rest for the students API</title>
+    <title>On Topic</title>
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
+
+
 </head>
 
 <body>
@@ -19,10 +23,13 @@
         <div class="hero-body">
             <div class="container">
                 <div class="columns">
-                    <div class="column is-9">
-                        <h1 class="title is-1">On Topic</h1>
+                    <div class="column is-9 has-text-left-desktop has-text-centered-touch topHeader">
+                        <h1 class="title is-1">
+                            <img src="assets/images/news.png" class="headerImage" />
+                            On Topic
+                        </h1>
                     </div>
-                    <div class="column is-3">
+                    <div class="column is-3 has-text-right-desktop has-text-centered-touch topButtons">
                         <button class="button is-rounded">Sign Up</button>
                         <button class="button is-primary is-rounded">Log In</button>
                     </div>
@@ -32,7 +39,7 @@
     </section>
 
     <section class="section">
-        <div class="container">
+        <div class="container" style="margin-bottom: 7px;">
             <div class="field is-grouped">
                 <div class="control is-expanded is-hidden-desktop has-icons-left">
                     <input class="input" type="text" placeholder="Search for an event..." name="search"></input>
@@ -49,7 +56,7 @@
                     </a>
                 </div>
             </div>
-            <div class="control">
+            <div class="control has-text-centered-mobile">
                 <label class="radio">
                     <input type="radio" name="searchBy" value="currentNews" checked>
                     Current Events
@@ -65,8 +72,31 @@
                     Wikipedia
                     </input>
                 </label>
-                <br />
-                <br />
+            </div>
+        </div>
+
+        <div class="container buttonContainer">
+            <div class="buttons">
+                <p class="control">
+                    <button class="button is-link randomButton" value="factOfDay">
+                        <span class="icon is-small">
+                            <i class="fas fa-book"></i>
+                        </span>
+                        <span>
+                            Fact of the Day
+                        </span>
+                    </button>
+                </p>
+                <p class="control">
+                    <button class="button is-info randomButton" value="imageOfDay">
+                        <span class="icon is-small">
+                            <i class="fas fa-rocket"></i>
+                        </span>
+                        <span>
+                            NASA Image of the Day
+                        </span>
+                    </button>
+                </p>
             </div>
         </div>
 
