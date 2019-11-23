@@ -19,6 +19,7 @@
 </head>
 
 <body>
+
     <section class="hero is-info">
         <div class="hero-body">
             <div class="container">
@@ -42,7 +43,8 @@
         <div class="container" style="margin-bottom: 7px;">
             <div class="field is-grouped">
                 <div class="control is-expanded is-hidden-desktop has-icons-left">
-                    <input class="input" type="text" placeholder="Search for an event..." name="search"></input>
+                    <input class="input search-bar" type="text" placeholder="Search for an event..."
+                        name="search"></input>
                     <span class="icon is-small is-left">
                         <i class="fas fa-search"></i>
                     </span>
@@ -51,7 +53,7 @@
                     <input class="input" type="text" placeholder="Search for an event..." name="search"> </input>
                 </div>
                 <div class="control">
-                    <a class="button is-info">
+                    <a class="button search-btn is-info">
                         Search
                     </a>
                 </div>
@@ -78,7 +80,7 @@
         <div class="container buttonContainer">
             <div class="buttons">
                 <p class="control">
-                    <button class="button is-link randomButton" value="factOfDay">
+                    <button class="button is-link randomButton fact-btn" value="factOfDay">
                         <span class="icon is-small">
                             <i class="fas fa-book"></i>
                         </span>
@@ -88,7 +90,7 @@
                     </button>
                 </p>
                 <p class="control">
-                    <button class="button is-info randomButton" value="imageOfDay">
+                    <button class="button is-info randomButton nasa-btn" value="imageOfDay">
                         <span class="icon is-small">
                             <i class="fas fa-rocket"></i>
                         </span>
@@ -96,6 +98,8 @@
                             NASA Image of the Day
                         </span>
                     </button>
+
+
                 </p>
             </div>
         </div>
@@ -118,26 +122,27 @@
                 <div class="message-body current-articles">
                     <article class="message is-info">
                         <div class="columns">
-                            <div class="column is-1">
-                                <img src="https://picsum.photos/id/970/128/128" />
+                            <div class="column is-1 article-img">
+                                <!-- <img src="https://picsum.photos/id/970/128/128" /> -->
                             </div>
-                            <div class="column is-11">
-                                <h1 class="title">Article Title</h1>
-                                <h2 class="subtitle">by Some Author</h2>
+                            <div class="column is-11 article-info">
+                                <!-- <h1 class="title">Article Title</h1>
+                                <h2 class="subtitle">by Some Author</h2> -->
                             </div>
                         </div>
-                        <div class="message-body">
-                            I am a snippet of information from an article. Lorem ipsum dolor sit amet, consectetur
+                        <div class="message-body article-snippet">
+                            <!-- I am a snippet of information from an article. Lorem ipsum dolor sit amet, consectetur
                             adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore
                             et
                             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
                             ut
                             aliquip
-                            ex ea commodo consequat.
+                            ex ea commodo consequat. -->
                         </div>
                         <br />
-                        <a href="#">Link to Article.</a>
+                        <div class='article-link'></div>
+                        <!-- <a href="#">Link to Article.</a> -->
                     </article>
                     <hr />
                     <article class="message is-info">
