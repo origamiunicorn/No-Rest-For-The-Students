@@ -28,7 +28,7 @@ $.ajax({
 });
 
 //From the response we can grab the image as the thumbnail and the url for the link added and the description + published date + Author
-var apiNasa = 'Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1'
+/*var apiNasa = 'Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1'
 
 var queryNASA = 'https://api.nasa.gov/planetary/apod?api_key=Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1&hd=TRUE$date=' + today
 
@@ -58,7 +58,7 @@ $.ajax({
     console.log(response)
     $('#new-news').append(response);
 })
-
+*/
 
 var sortBy = '&sortBy='
 var apiNews = '&apiKey=c2704563e1294b96ae07dbe18fda2af6'
@@ -73,6 +73,9 @@ $.ajax({
 })
 
 
+/**
+ * code to query the wiki api
+ */
 var queryWiki = "https://en.wikipedia.org/w/api.php";
 
 var params = {
@@ -82,13 +85,24 @@ var params = {
     format: "json"
 };
 
-url = queryWiki + "?origin=*";
+url = queryWiki + "?origin=*&";
 url += $.param(params);
-
+console.log(url);
 $.ajax({
     url: url,
     method: "GET"
 }).then(function (response) {
-    console.log(response.query.search);
-    $('#new-news').append(response.articles)
+    //console.log(response.query.search);
+    var results = response.query.search;
+    $.each(results, function (index, value) {
+        var wikiArticle = $("<article class='message is-info'>");
+        $('#wikiId').append(wikiArticle);
+        var colDiv = $("<div class='columns'>");
+        colDiv.append("<div class='column is-12'><h1 class='title'>" + results[index].title + "</h1></div>");
+        var msgDiv = $("<div class='message-body'>" + results[index].snippet + "</div>");
+        $(wikiArticle).append(colDiv, msgDiv);
+        $(wikiArticle).append("<br />");
+        $(wikiArticle).append("<a href='https://en.wikipedia.org/wiki/" + results[index].title + "' target='_blank'>" + results[index].title + "</a>");
+        $('#wikiId').append("<hr />");
+    });
 });
