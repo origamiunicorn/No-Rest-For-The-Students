@@ -18,45 +18,148 @@
     <section class="hero is-info">
         <div class="hero-body">
             <div class="container">
-                <header>API</header>
-                <div id="apiButtons">
-                    <form class="example" action="action_page.php">
-                        <input type="text" placeholder=" Search for an event by keyword(s)..." name="search">
-                        <button type="submit"><i class="fa fa-search">Submit</i></button>
-                    </form>
-                    <input type="radio" name="current" value="news"> Current Events
-                    <input type="radio" name="historical" value="historical"> Historical Events
-                    <input type="radio" name="wikipedia" value="wikapidia"> Wikipedia
+                <div class="columns">
+                    <div class="column is-9">
+                        <h1 class="title is-1">On Topic</h1>
+                    </div>
+                    <div class="column is-3">
+                        <button class="button is-rounded">Sign Up</button>
+                        <button class="button is-primary is-rounded">Log In</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="section">
-        <article class="message is-link">
-            <div class="message-header">
-                Current Articles
+        <div class="container">
+            <div class="field is-grouped">
+                <div class="control is-expanded is-hidden-desktop has-icons-left">
+                    <input class="input" type="text" placeholder="Search for an event..." name="search"></input>
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div>
+                <div class="control is-hidden-touch">
+                    <input class="input" type="text" placeholder="Search for an event..." name="search"> </input>
+                </div>
+                <div class="control">
+                    <a class="button is-info">
+                        Search
+                    </a>
+                </div>
             </div>
-            <div class="message-body current-articles">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat.
+            <div class="control">
+                <label class="radio">
+                    <input type="radio" name="searchBy" value="currentNews" checked>
+                    Current Events
+                    </input>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="searchBy" value="historicalEvents">
+                    Historical Events
+                    </input>
+                </label>
+                <label class="radio">
+                    <input type="radio" name="searchBy" value="wikipediaInfo">
+                    Wikipedia
+                    </input>
+                </label>
+                <br />
+                <br />
             </div>
+        </div>
+
+        <div class="container">
+            <article class="message is-dark">
+                <div class="message-header">
+                    <p>Related Articles</p>
+                    <button class="button" id="plusButton">
+                        <span class="icon is-small">
+                            <i class="fas fa-plus-circle"></i>
+                        </span>
+                    </button>
+                    <button class="button" id="minusButton" style="display: none;">
+                        <span class="icon is-small">
+                            <i class="fas fa-minus-circle"></i>
+                        </span>
+                    </button>
+                </div>
+                <div class="message-body current-articles">
+                    <article class="message is-info">
+                        <div class="columns">
+                            <div class="column is-1">
+                                <img src="https://picsum.photos/id/970/128/128" />
+                            </div>
+                            <div class="column is-11">
+                                <h1 class="title">Article Title</h1>
+                                <h2 class="subtitle">by Some Author</h2>
+                            </div>
+                        </div>
+                        <div class="message-body">
+                            I am a snippet of information from an article. Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                            ut
+                            aliquip
+                            ex ea commodo consequat.
+                        </div>
+                        <br />
+                        <a href="#">Link to Article.</a>
+                    </article>
+                    <hr />
+                    <article class="message is-info">
+                        <div class="columns">
+                            <div class="column is-1">
+                                <img src="https://picsum.photos/id/970/128/128" />
+                            </div>
+                            <div class="column is-11">
+                                <h1 class="title">Article Title</h1>
+                                <h2 class="subtitle">by Some Author</h2>
+                            </div>
+                        </div>
+                        <div class="message-body">
+                            I am a snippet of information from an article. Lorem ipsum dolor sit amet, consectetur
+                            adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore
+                            et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                            ut
+                            aliquip
+                            ex ea commodo consequat.
+                        </div>
+                        <br />
+                        <a href="#">Link to Article.</a>
+                    </article>
+                </div>
+        </div>
         </article>
+        <br />
+        <div class="container">
+            <article class="message is-dark">
+                <div class="message-header">
+                    Related Videos
+                </div>
+                <div class="message-body video-pulls">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip
+                    ex ea commodo consequat.
+                </div>
+            </article>
+        </div>
     </section>
 
-    <section class="section">
-        <article class="message is-link">
-            <div class="message-header">
-                Video Response
-            </div>
-            <div class="message-body video-pulls">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat.
-            </div>
-        </article>
-    </section>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                This is a <strong>Footer</strong>!
+            </p>
+        </div>
+    </footer>
 
 </body>
 
