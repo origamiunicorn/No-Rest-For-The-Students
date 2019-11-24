@@ -11,6 +11,10 @@
     margin-right: 5px;
 }
 
+.is-16by9 {
+    margin-bottom: 20px;
+}
+
   @media screen and (max-width: 768px) {
     .childButtonContainer {
         justify-content: center;
