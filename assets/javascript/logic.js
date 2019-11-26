@@ -15,6 +15,18 @@ $(document).ready(function () {
         console.log("our current search term is: " + searchTerm);
         console.log("our current search term is: " + searchTermSmall);
         $(".searchTerm").val(""); // Clears text input box
+
+        if (searchWithin == "wikipediaInfo") {
+            searchWiki(searchTerm);
+        }
+
+        // code to empty the youtube video divs and recreate the player divs 
+        $('.video-pulls .image').each(function (index) {
+            $(this).empty();
+            $(this).append('<div id="player' + (index++) + '" class="has-ratio"></div>');
+        });
+        searchVideos(searchTerm);
+
     });
 
 
@@ -43,19 +55,13 @@ $(document).ready(function () {
         //     $('.article-snippet').append('<p>' + response.news[3].description + '</p>')
         //     $('.article-link').append('<a href="' + response.news[3].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>')
         // }
-
-
-
-
     });
 
-  
-       
+
+
     /*  
     Code to query the NewsAPI
     */
-
-
     var sortBy = '&sortBy='
     var apiNews = '&apiKey=c2704563e1294b96ae07dbe18fda2af6'
     var keyword = $('.search-input').val()
@@ -76,123 +82,36 @@ $(document).ready(function () {
 
     });
 
+    /* Start - To show Nasa Image of the day   */
 
-
-    /**
-     * code to query the wiki api
-     */
-    var queryWiki = "https://en.wikipedia.org/w/api.php";
-
-    var params = {
-        action: "query",
-        list: "search",
-        srsearch: "Nelson Mandela",
-        format: "json"
-    };
-
-    url = queryWiki + "?origin=*&";
-    url += $.param(params);
-    console.log(url);
+    var today = moment().format('YYYY-MM-DD');
+    var queryNASA = 'https://api.nasa.gov/planetary/apod?api_key=Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1&hd=TRUE$date=' + today
+    // code to query the Nasa image of the day
+    // Needs to be called and added to modal before modal is called so it doesn't have to load
     $.ajax({
-        url: url,
+        url: queryNASA,
         method: "GET"
     }).then(function (response) {
-        //console.log(response.query.search);
-        var results = response.query.search;
-        $('.current-articles').empty();
-        $.each(results, function (index, value) {
-            var wikiArticle = $("<article class='message is-info'>");
-            $('.current-articles').append(wikiArticle);
-            var colDiv = $("<div class='columns'>");
-            colDiv.append("<div class='column is-12'><h1 class='title'>" + results[index].title + "</h1></div>");
-            var msgDiv = $("<div class='message-body'>" + results[index].snippet + "</div>");
-            $(wikiArticle).append(colDiv, msgDiv);
-            $(wikiArticle).append("<br />");
-            $(wikiArticle).append("<a href='https://en.wikipedia.org/wiki/" + results[index].title + "' target='_blank'>" + results[index].title + "</a>");
-            $('.current-articles').append("<hr />");
-        });
+        console.log(response)
+        $('.nasa-img').html('<img src="' + response.hdurl + '">');
+        $('.nasa-desc').html(response.explanation);
+
     });
 
-    /**
-     * code to display videos
-     */
-
-    var playerInfoList = [];
-    $.ajax({
-        method: 'GET',
-        url: 'https://www.googleapis.com/youtube/v3/search?',
-        data: {
-            q: 'Nelson Mandela',
-            part: 'snippet',
-            key: 'AIzaSyDvZJroibDl30fxnmsNsCZO1o-9N-Em5zs',
-            maxResults: 6
-        },
-        dataType: 'jsonp'
-    }).then(function (response) {
-        var results = response.items;
-        $.each(results, function (index, value) {
-            var videoObj = {
-                id: 'player',
-                height: '390',
-                width: '640',
-                videoId: results[index].id.videoId
-            }
-            playerInfoList.push(videoObj);
-        });
-        onYouTubePlayerAPIReady();
-
-        function onYouTubePlayerAPIReady() {
-            for (var i = 0; i < playerInfoList.length; i++) {
-                console.log(playerInfoList[i].videoId);
-                player = new YT.Player('player' + [i], {
-                    height: '360',
-                    width: '640',
-                    videoId: playerInfoList[i].videoId
-                });
-            }
-        }
-    });
-
-    // This code loads the IFrame Player API code asynchronously.
-    var tag = document.createElement('script');
-
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    /*
-    Modals!
-    */
-
-
-
-var queryNASA = 'https://api.nasa.gov/planetary/apod?api_key=Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1&hd=TRUE$date=' + today
-var today = moment().format('YYYY-MM-DD')
-// code to query the Nasa image of the day
-// Needs to be called and added to modal before modal is called so it doesn't have to load
-$.ajax({
-    url: queryNASA,
-    method: "GET"
-}).then(function (response) {
-    console.log(response)
-    $('.nasa-img').html('<img src="' + response.hdurl + '">');
-    $('.nasa-desc').html(response.explanation);
-
-})
-
-$(document).ready(function () {
     $('.nasa-btn').on('click', function () {
-
-
-        $('#modal-id').addClass('is-active')
-        $('#modal-id').addClass('is-clipped')
-    })
+        $('#modal-id').addClass('is-active');
+        $('#modal-id').addClass('is-clipped');
+        $('.nasa-modal').attr('class', 'is-active');
+        $('.nasa-modal').attr('class', 'is-clipped');
+    });
 
     $(document).on('click', '.modal-close', function () {
-
         $('#modal-id').removeClass('is-active');
-    })
+    });
 
+    /* End - To show Nasa Image of the day   */
+
+    /* Start - To show the fact of the day */
     $('.fact-btn').on('click', function () {
         var todayInSlashes = moment().format('MM/DD')
         var todayInMoreSlashes = moment().format('MM/DD/YYYY')
@@ -217,14 +136,91 @@ $(document).ready(function () {
         $('.fact-modal').removeClass('is-active')
 
     })
-
-})
-    $(document).ready(function () {
-        $('.nasa-btn').on('click', function () {
-            $('.nasa-modal').attr('class', 'is-active')
-            $('.nasa-modal').attr('class', 'is-clipped')
-        })
-    })
+    /* End - To show the fact of the day */
 
 });
 
+
+/************************************ User defined functions  /************************************/
+function generateURL(url, params) {
+    if (params) url += $.param(params);
+    //console.log(url);
+    return url;
+}
+
+function searchWiki(searchTerm) {
+    var params = {
+        action: "query",
+        list: "search",
+        srsearch: searchTerm,
+        format: "json"
+    };
+
+    var queryURL = generateURL("https://en.wikipedia.org/w/api.php?origin=*&", params);
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function (response) {
+        var results = response.query.search;
+        $('.current-articles').empty();
+        $.each(results, function (index, value) {
+            var wikiArticle = $("<article class='message is-info'>");
+            $('.current-articles').append(wikiArticle);
+            var colDiv = $("<div class='columns'>");
+            colDiv.append("<div class='column is-12'><h1 class='title'>" + results[index].title + "</h1></div>");
+            var msgDiv = $("<div class='message-body'>" + results[index].snippet + "</div>");
+            $(wikiArticle).append(colDiv, msgDiv);
+            $(wikiArticle).append("<br />");
+            $(wikiArticle).append("<a href='https://en.wikipedia.org/wiki/" + results[index].title + "' target='_blank'>" + results[index].title + "</a>");
+            $('.current-articles').append("<hr />");
+        });
+    });
+}
+
+function searchVideos(searchTerm) {
+    var playerInfoList = [];
+    $.ajax({
+        method: 'GET',
+        url: 'https://www.googleapis.com/youtube/v3/search?',
+        data: {
+            q: searchTerm,
+            part: 'snippet',
+            key: 'AIzaSyDvZJroibDl30fxnmsNsCZO1o-9N-Em5zs',
+            maxResults: 6
+        },
+        dataType: 'jsonp'
+    }).then(function (response) {
+        var results = response.items;
+        $.each(results, function (index, value) {
+            var videoObj = {
+                id: 'player',
+                height: '390',
+                width: '640',
+                videoId: results[index].id.videoId
+            }
+            playerInfoList.push(videoObj);
+        });
+        onYouTubePlayerAPIReady();
+
+        function onYouTubePlayerAPIReady() {
+            for (var i = 0; i < playerInfoList.length; i++) {
+                //console.log(playerInfoList[i].videoId);
+                player = new YT.Player('player' + [i], {
+                    height: '360',
+                    width: '640',
+                    videoId: playerInfoList[i].videoId
+                });
+            }
+        }
+    });
+
+    // This code loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+}
+/************************************ User defined functions  /************************************/
