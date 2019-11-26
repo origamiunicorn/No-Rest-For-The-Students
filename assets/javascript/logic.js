@@ -49,42 +49,9 @@ $(document).ready(function () {
 
     });
 
-
-
-    //From the response we can grab the image as the thumbnail and the url for the link added and the description + published date + Author
-    /*var apiNasa = 'Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1'
-    
-    var queryNASA = 'https://api.nasa.gov/planetary/apod?api_key=Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1&hd=TRUE$date=' + today
-    
-    
-    var today = moment().format('YYYY-MM-DD')
-    var todayInSlashes = moment().format('MM/DD')
-    
-    
-    
-    console.log(today);
-    //For the NASA image of the day
-    $.ajax({
-        url: queryNASA,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response)
-        $('#new-news').append('<img src="' + response.hdurl + '">')
-    
-    })
-    
-    console.log(todayInSlashes)
-    var queryNumber = 'http://numbersapi.com/' + todayInSlashes + '/date'
-    $.ajax({
-        url: queryNumber,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response)
-        $('#new-news').append(response);
-    })
-    */
-
-    /*
+  
+       
+    /*  
     Code to query the NewsAPI
     */
 
@@ -108,6 +75,7 @@ $(document).ready(function () {
         })
 
     });
+
 
 
     /**
@@ -196,6 +164,61 @@ $(document).ready(function () {
     Modals!
     */
 
+
+
+var queryNASA = 'https://api.nasa.gov/planetary/apod?api_key=Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1&hd=TRUE$date=' + today
+var today = moment().format('YYYY-MM-DD')
+// code to query the Nasa image of the day
+// Needs to be called and added to modal before modal is called so it doesn't have to load
+$.ajax({
+    url: queryNASA,
+    method: "GET"
+}).then(function (response) {
+    console.log(response)
+    $('.nasa-img').html('<img src="' + response.hdurl + '">');
+    $('.nasa-desc').html(response.explanation);
+
+})
+
+$(document).ready(function () {
+    $('.nasa-btn').on('click', function () {
+
+
+        $('#modal-id').addClass('is-active')
+        $('#modal-id').addClass('is-clipped')
+    })
+
+    $(document).on('click', '.modal-close', function () {
+
+        $('#modal-id').removeClass('is-active');
+    })
+
+    $('.fact-btn').on('click', function () {
+        var todayInSlashes = moment().format('MM/DD')
+        var todayInMoreSlashes = moment().format('MM/DD/YYYY')
+        var queryNumber = 'http://numbersapi.com/' + todayInSlashes + '/date'
+        $('.fact-title').html('Today is ' + todayInMoreSlashes);
+        $.ajax({
+            url: queryNumber,
+            method: "GET"
+        }).then(function (response) {
+            $('.fact-modal').addClass('is-active')
+            $('.fact-modal').addClass('is-clipped')
+            $('.rando-fact').html(response);
+        })
+
+    })
+
+    $(document).on('click', '.delete', function () {
+        $('.fact-modal').removeClass('is-active')
+
+    })
+    $(document).on('click', '.close-button', function () {
+        $('.fact-modal').removeClass('is-active')
+
+    })
+
+})
     $(document).ready(function () {
         $('.nasa-btn').on('click', function () {
             $('.nasa-modal').attr('class', 'is-active')
@@ -204,3 +227,4 @@ $(document).ready(function () {
     })
 
 });
+
