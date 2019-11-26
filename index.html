@@ -30,18 +30,60 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
+    <!--  Moment.js CDN  -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!--  Bulma Modal FX CDN and Script  -->
+    <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+    <script type="text/javascript" src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
 
 </head>
 
 <body>
+    <!-- Nasa Image Modal -->
+    <div id='modal-id' class="modal modal-fx-newsPaper">
+        <div class="modal-background"></div>
+        <div class='modal-card'>
+            <header class='modal-card-head'>
+                <p class="modal-card-title nasa-title">NASA Picture of the Day</p>
+                <button class="modal-close is-large" aria-label="close"></button>
+            </header>
+            <div class='card-image'>
+                <figure class='image nasa-img is-4by3'></figure>
+            </div>
+
+            <footer class='modal-card-body'>
+                <p class='nasa-desc'></p>
+            </footer>
+
+        </div>
+
+    </div>
+
+    <!-- Fact of the Day Modal -->
+    <div class="modal fact-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title fact-title"></p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body rando-fact">
+
+            </section>
+            <footer class="modal-card-foot">
+                <!-- Maybe a save button if they like the fact? -->
+                <button class="close-button">Close</button>
+            </footer>
+        </div>
+    </div>
 
     <section class="hero is-info">
         <div class="hero-body">
             <div class="container">
                 <div class="columns">
-                    <div class="column is-9 has-text-left-desktop has-text-centered-touch topHeader">
+                    <div class="column is-9 has-text-left-desktop has-text-centered-mobile topHeader">
                         <h1 class="title is-1">
                             <img src="assets/images/news.png" class="headerImage" />
                             On Topic
@@ -60,17 +102,18 @@
         <div class="container" style="margin-bottom: 7px;">
             <div class="field is-grouped">
                 <div class="control is-expanded is-hidden-desktop has-icons-left">
-                    <input class="input search-bar" type="text" placeholder="Search for an event..."
-                        name="search"></input>
+                    <input class="input search-bar searchTerm" id="searchTermSmall" type="text"
+                        placeholder="Search for an event..." name="search">
                     <span class="icon is-small is-left">
                         <i class="fas fa-search"></i>
                     </span>
                 </div>
                 <div class="control is-hidden-touch">
-                    <input class="input" type="text" placeholder="Search for an event..." name="search"> </input>
+                    <input class="input searchTerm" id="searchTermLarge" type="text"
+                        placeholder="Search for an event..." name="search">
                 </div>
                 <div class="control">
-                    <a class="button search-btn is-info">
+                    <a class="button search-btn is-info" id="searchButton">
                         Search
                     </a>
                 </div>
@@ -79,23 +122,20 @@
                 <label class="radio">
                     <input type="radio" name="searchBy" value="currentNews" checked>
                     Current Events
-                    </input>
                 </label>
                 <label class="radio">
                     <input type="radio" name="searchBy" value="historicalEvents">
                     Historical Events
-                    </input>
                 </label>
                 <label class="radio">
                     <input type="radio" name="searchBy" value="wikipediaInfo">
                     Wikipedia
-                    </input>
                 </label>
             </div>
         </div>
 
         <div class="container buttonContainer">
-            <div class="buttons">
+            <div class="buttons childButtonContainer">
                 <p class="control">
                     <button class="button is-link randomButton fact-btn" value="factOfDay">
                         <span class="icon is-small">
@@ -137,32 +177,7 @@
                     </button>
                 </div>
                 <div class="message-body current-articles">
-                    <article class="message is-info">
-                        <div class="columns">
-                            <div class="column is-1 article-img">
-                                <!-- <img src="https://picsum.photos/id/970/128/128" /> -->
-                            </div>
-                            <div class="column is-11 article-info">
-                                <!-- <h1 class="title">Article Title</h1>
-                                <h2 class="subtitle">by Some Author</h2> -->
-                            </div>
-                        </div>
-                        <div class="message-body article-snippet">
-                            <!-- I am a snippet of information from an article. Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut
-                            aliquip
-                            ex ea commodo consequat. -->
-                        </div>
-                        <br />
-                        <div class='article-link'></div>
-                        <!-- <a href="#">Link to Article.</a> -->
-                    </article>
-                    <hr />
-                    <article class="message is-info">
+                    <!-- <article class="message is-info">
                         <div class="columns">
                             <div class="column is-1">
                                 <img src="https://picsum.photos/id/970/128/128" />
@@ -184,9 +199,8 @@
                         </div>
                         <br />
                         <a href="#">Link to Article.</a>
-                    </article>
+                    </article> -->
                 </div>
-                <div id="wikiId" class="message-body current-articles"></div>
         </div>
         </article>
         <br />
@@ -196,11 +210,21 @@
                     Related Videos
                 </div>
                 <div class="message-body video-pulls">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex ea commodo consequat.
+                    <figure class="image is-16by9">
+                        <div id="player1" class="has-ratio"></div>
+                    </figure>
+                    <figure class="image is-16by9">
+                        <div id="player2" class="has-ratio"></div>
+                    </figure>
+                    <figure class="image is-16by9">
+                        <div id="player3" class="has-ratio"></div>
+                    </figure>
+                    <figure class="image is-16by9">
+                        <div id="player4" class="has-ratio"></div>
+                    </figure>
+                    <figure class="image is-16by9">
+                        <div id="player5" class="has-ratio"></div>
+                    </figure>
                 </div>
             </article>
         </div>
@@ -210,6 +234,9 @@
         <div class="content has-text-centered">
             <p>
                 This is a <strong>Footer</strong>!
+            </p>
+            <p>
+                News clipart courtesy of <a href="https://www.vecteezy.com/">Vectors by Vecteezy</a>.
             </p>
         </div>
     </footer>
