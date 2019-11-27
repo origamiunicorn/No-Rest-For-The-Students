@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     $("#searchButton").on("click", function (event) {
         event.preventDefault();
-
+        $('.current-articles').empty();
         searchWithin = $("input[type='radio']:checked").val();
         searchTerm = $("#searchTermLarge").val().trim();
         searchTermSmall = $("#searchTermSmall").val().trim();
@@ -15,6 +15,10 @@ $(document).ready(function () {
         console.log("our current search term is: " + searchTerm);
         console.log("our current search term is: " + searchTermSmall);
         $(".searchTerm").val(""); // Clears text input box
+
+        if (searchWithin == 'currentNews') {
+            newsAPI(searchTerm);
+        }
 
         if (searchWithin == "wikipediaInfo") {
             searchWiki(searchTerm);
@@ -62,25 +66,73 @@ $(document).ready(function () {
     /*  
     Code to query the NewsAPI
     */
-    var sortBy = '&sortBy='
-    var apiNews = '&apiKey=c2704563e1294b96ae07dbe18fda2af6'
-    var keyword = $('.search-input').val()
-    var queryNews = 'https://newsapi.org/v2/top-headlines?country=us' + apiNews
-
-    $('.search-btn').on('click', function () {
+    function newsAPI(search) {
+        // http://lorempixel.com/g/400/200/
+        var apiNews = '&apiKey=c2704563e1294b96ae07dbe18fda2af6';
+        var keyword = search;
+        var queryNews = 'https://newsapi.org/v2/everything?q=' + keyword + apiNews
         $.ajax({
             url: queryNews,
             method: "GET"
         }).then(function (response) {
+
             console.log(response)
-            $('.article-img').append('<img src="' + response.articles[3].urlToImage + '">');
-            $('.article-info').append('<h1 class="article-title">' + response.articles[3].title + '</h1>' + '<h3 class=article-by> By ' + response.articles[3].author + '</h3>')
-            $('.article-snippet').append('<p>' + response.articles[3].description + '</p>')
-            $('.article-link').append('<a href="' + response.articles[3].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>')
+
+            for (var i = 0; i < 10; i++) {
+                var author;
+                console.log(response.articles[i].author)
+                if (response.articles[i].author == null) {
+                    author = 'Associated Press';
+                }
+                else {
+                    author = response.articles[i].author;
+                }
+
+                $('.current-articles').append('<article class="message is-info">' +
+                    '<div class="columns">' +
+                    '<div class="column is-1">' + '<img src="' + response.articles[i].urlToImage/*image url goes here */ + '" />' + '</div>' +
+                    '<div class="column is-11">' + '<p class="title">' + response.articles[i].title + '</p>' + '<p class="subtitle"> Written By: ' + author + '</p>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="message-body">' + response.articles[i].description + '</div>' + '<br />' +
+                    '<a href="' + response.articles[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
+                    '<hr />' +
+                    '</article>')
+                // $('.article-img').append('<img src="' + response.articles[3].urlToImage + '">');
+                // $('.article-info').append('<h1 class="article-title">' + response.articles[3].title + '</h1>' + '<h3 class=article-by> By ' + response.articles[3].author + '</h3>')
+                // $('.article-snippet').append('<p>' + response.articles[3].description + '</p>')
+                // $('.article-link').append('<a href="' + response.articles[3].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>')
+            }
 
         })
+    }
 
-    });
+    //     <article class="message is-info">
+    //     <div class="columns">
+    //         <div class="column is-1">
+    //             <img src="https://picsum.photos/id/970/128/128" />
+    //         </div>
+    //         <div class="column is-11">
+    //             <h1 class="title">Article Title</h1>
+    //             <h2 class="subtitle">by Some Author</h2>
+    //         </div>
+    //     </div>
+    //     <div class="message-body">
+    //         I am a snippet of information from an article. Lorem ipsum dolor sit amet, consectetur
+    //         adipiscing elit, sed do eiusmod tempor incididunt ut
+    //         labore
+    //         et
+    //         dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+    //         ut
+    //         aliquip
+    //         ex ea commodo consequat.
+    //     </div>
+    //     <br />
+    //     <a href="#">Link to Article.</a>
+    // </article> 
+
+
+
 
     /* Start - To show Nasa Image of the day   */
 
