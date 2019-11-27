@@ -14,13 +14,6 @@
 .is-16by9 {
     margin-bottom: 20px;
 }
-
-  @media screen and (max-width: 768px) {
-    .childButtonContainer {
-        justify-content: center;
-    }
-  }
-
   /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -76,4 +69,19 @@
   @keyframes animatezoom {
     from {transform: scale(0)}
     to {transform: scale(1)}
+  }
+
+@media screen and (min-width: 768px) {
+  .searchBarDiv {
+    width: 200px;
+  }
+  .screenSizeSearch {
+    flex-grow: 11;
+  }
+}
+
+  @media screen and (max-width: 768px) {
+    .childButtonContainer {
+        justify-content: center;
+    }
   }
