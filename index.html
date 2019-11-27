@@ -8,29 +8,26 @@
 
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
 
-    <title>On Topic</title>
+<title>On Topic</title>
 
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
-    
-    <!--  Moment.js CDN  -->
-    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-    <!--  Bulma Modal FX CDN and Script  -->
-    <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
-    <script type="text/javascript" src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 
-
+<!--  Moment.js CDN  -->
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<!--  Bulma Modal FX CDN and Script  -->
+<link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+<script type="text/javascript" src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
 
 </head>
 
@@ -72,7 +69,7 @@
             </footer>
         </div>
     </div>
-<p>I</p>
+
     <section class="hero is-info">
         <div class="hero-body">
             <div class="container">
@@ -83,28 +80,52 @@
                             On Topic
                         </h1>
                     </div>
-                    
+
                     <div class="column is-3 has-text-right-desktop has-text-centered-touch topButtons">
-                            <form action="action_page.php" method="post">
-                                    <div class="imgcontainer">
-                                      <img src="https://login.gov/assets/img/login-gov-600x314.png" alt="Avatar" class="avatar">
-                                    </div>
-                                  
-                                    <div id="modal"></div>
-                                    <div id="login">
-                                      <div id="triangle"></div>
-                                      <h1>Log in</h1>
-                                      <form method="GET" action="index.html">        
-                                        <input type="Username" placeholder="Username" />
-                                        <input type="password" placeholder="Password" />        
-                                        
-                                                <input type="submit" value="Login"/>
-                                               
-                                      </form>
-                                    </div>
+                        <div class="centers">
+                            <form action="index.html" method="post">
+                                <div class="imgcontainer">
+
+
+                                </div>
+
+                                <div class="container">
+                                    <label class="label">Email or username</label>
+                                    <input type="text" placeholder="Enter Username" name="uname" required>
+
+                                    <label class="label">Password</label>
+                                    <input type="password" placeholder="Enter Password" name="psw" required>
+
+                                    <br>
+                                    <label>
+                                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                                    </label>
+                                    <button type="submit">
+                                        Login
+                                    </button>
+                                </div>
+                             
+                                <h6 class="subtitle is-6 has-text-centered">or</h6>
+                                <div class="has-text-centered">
+                                    <a href="signup.html" class="button is-link">sign up</a>
+                                    
+                                </div>
+                                <!-- <div class="container" style="background-color:#f1f1f1">
+                                <button type="button" class="cancelbtn">Cancel</button>
+                                <span class="psw">Forgot <a href="#">password?</a></span> -->
+                        </div>
+                        <p class="card-footer-item register">
+                            <span>
+
+                            </span>
+                        </p>
+                        </footer>
                     </div>
                 </div>
+                </form>
             </div>
+        </div>
+        </div>
         </div>
     </section>
 
