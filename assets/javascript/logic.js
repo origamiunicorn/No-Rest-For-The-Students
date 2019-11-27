@@ -9,8 +9,7 @@ $(document).ready(function () {
         event.preventDefault();
         $('.current-articles').empty();
         searchWithin = $("input[type='radio']:checked").val();
-        searchTerm = $("#searchTermLarge").val().trim();
-        searchTermSmall = $("#searchTermSmall").val().trim();
+        searchTerm = $("#searchTermSmall").val().trim();
         console.log(searchWithin + " is checked!");
         console.log("our current search term is: " + searchTerm);
         console.log("our current search term is: " + searchTermSmall);
@@ -20,9 +19,15 @@ $(document).ready(function () {
             newsAPI(searchTerm);
         }
 
+        if (searchWithin == 'historicalEvents') {
+            currentsAPI(searchTerm);
+        }
+
         if (searchWithin == "wikipediaInfo") {
             searchWiki(searchTerm);
         }
+
+
 
         // code to empty the youtube video divs and recreate the player divs 
         $('.video-pulls .image').each(function (index) {
@@ -34,32 +39,57 @@ $(document).ready(function () {
     });
 
 
-    var apikey = '&apiKey=DZDcAWMI7tHZgDL-0HsY9xdV2PP2WERqSJ4RodnZ84DGyEwJ';
-    var historical = 'search?'
-    var current = 'latest-news?'
-    var startDate; //Will have to have YYYY-MM-dd format 
-    var endDate; // Will have to have YYYY-MM-dd format 
-    var type; //Will be an integer: 1 for news, 2 for articles, 3 for discussion content, Default 1
+    /* 
+        Code to query the CurrentsAPI 
+    */
+    function currentsAPI(search) {
+        var apikey = '&apiKey=DZDcAWMI7tHZgDL-0HsY9xdV2PP2WERqSJ4RodnZ84DGyEwJ';
+        var startDate; //Will have to have YYYY-MM-dd format 
+        var endDate; // Will have to have YYYY-MM-dd format 
+        var type; //Will be an integer: 1 for news, 2 for articles, 3 for discussion content, Default 1
 
-    var lang = '&language=en'
+        var lang = '&language=en'
+        var keywords = search;
+        var queryURL = 'https://api.currentsapi.services/v1/search?keywords=' + keywords + lang + apikey;
 
-    var queryURL = 'https://api.currentsapi.services/v1/' + current + lang + apikey;
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            for (var i = 0; i < 10; i++) {
+                var author;
+                console.log(response.news[i].author)
+                if (response.news[i].author == null) {
+                    author = 'Associated Press';
+                }
+                else {
+                    author = response.news[i].author;
+                }
 
+                $('.current-articles').append('<article class="message is-info">' +
+                    '<div class="columns">' +
+                    '<div class="column is-1">' + '<img src="' + response.news[i].image/*image url goes here */ + '" />' + '</div>' +
+                    '<div class="column is-11">' + '<p class="title">' + response.news[i].title + '</p>' + '<p class="subtitle"> Written By: ' + author + '</p>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="message-body">' + response.news[i].description + '</div>' + '<br />' +
+                    '<a href="' + response.news[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
+                    '<hr />' +
+                    '</article>')
 
+            }
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
-        console.log(response);
-        //We also want to make the response.news.published into a moment so that we can format it and display it
-        // if (response.news.image !== 'none') {
-        //     $('.article-img').append('<img src="' + response.news[3].image + '">');
-        //     $('.article-info').append('<h1 class="article-title">' + response.news[3].title + '</h1>' + '<h3 class=article-by> By ' + response.news[3].author + '</h3>')
-        //     $('.article-snippet').append('<p>' + response.news[3].description + '</p>')
-        //     $('.article-link').append('<a href="' + response.news[3].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>')
-        // }
-    });
+            //We also want to make the response.news.published into a moment so that we can format it and display it
+            // if (response.news.image !== 'none') {
+            //     $('.article-img').append('<img src="' + response.news[3].image + '">');
+            //     $('.article-info').append('<h1 class="article-title">' + response.news[3].title + '</h1>' + '<h3 class=article-by> By ' + response.news[3].author + '</h3>')
+            //     $('.article-snippet').append('<p>' + response.news[3].description + '</p>')
+            //     $('.article-link').append('<a href="' + response.news[3].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>')
+            // }
+        });
+    }
+
 
 
 
