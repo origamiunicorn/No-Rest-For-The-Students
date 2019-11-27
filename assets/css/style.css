@@ -85,6 +85,7 @@
         justify-content: center;
     }
   }
+<<<<<<< HEAD
 
   /* The Modal (background) */
 .modal {
@@ -142,3 +143,5 @@
     from {transform: scale(0)}
     to {transform: scale(1)}
   }
+=======
+>>>>>>> 74b693f850b8b6587ffa0dc34ce09d7a3c2e0d9a
