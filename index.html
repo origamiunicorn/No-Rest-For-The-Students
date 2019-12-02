@@ -18,6 +18,13 @@
     <!--  Bulma Modal FX CDN and Script  -->
     <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
     <script type="text/javascript" src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
+    <!--The core Firebase JS SDK is always required and must be listed first-->
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
 </head>
 
 <body>
@@ -58,6 +65,82 @@
         </div>
     </div>
 
+    <!-- Sign Up Modal -->
+    <div class="modal signup-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title fact-title"></p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form name="sign-up-frm">
+                    <div class="field">
+                        <label class="label">Firstname</label>
+                        <p class="control has-icons-left">
+                            <input id="firstname" class="input" type="text" placeholder="Firstname">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Lastname</label>
+                        <p class="control has-icons-left">
+                            <input id="lastname" class="input" type="text" placeholder="Lastname">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Email Address</label>
+                        <p class="control has-icons-left">
+                            <input id="email" class="input" type="email" placeholder="Email Address">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <p class="control has-icons-left">
+                            <input id="password" class="input" type="password" placeholder="Password">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Confirm Password</label>
+                        <p class="control has-icons-left">
+                            <input class="input" type="password" placeholder="Confirm Password">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <p class="control">
+                            <button id="sign-up-save-btn" class="button is-success">
+                                Sign Up
+                            </button>
+                        </p>
+                    </div>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <!-- Maybe a save button if they like the fact? -->
+                <button class="close-button">Close</button>
+            </footer>
+        </div>
+    </div>
+
     <section class="hero is-info">
         <div class="hero-body">
             <div class="container">
@@ -70,44 +153,44 @@
                     </div>
 
                     <div class="column is-3 has-text-right-desktop has-text-centered-touch topButtons">
-                            <div class="centers">
-                                    <form action="index.html" method="post">
-                                        <div class="imgcontainer">
-        
-        
-                                        </div>
-        
-                                        <div class="container">
-                                            <label class="label">Email or username</label>
-                                            <input type="text" placeholder="Enter Username" name="uname" required>
-        
-                                            <label class="label">Password</label>
-                                            <input type="password" placeholder="Enter Password" name="psw" required>
-        
-                                            <br>
-                                            <label>
-                                                <input type="checkbox" checked="checked" name="remember"> Remember me
-                                            </label>
-                                            <button type="submit">
-                                                Login
-                                            </button>
-                                        </div>
-                                     
-                                        <h6 class="subtitle is-6 has-text-centered">or</h6>
-                                        <div class="has-text-centered">
-                                            <a href="signup.html" class="button is-link">sign up</a>
-                                            
-                                        </div>
-                                        <!-- <div class="container" style="background-color:#f1f1f1">
+                        <div class="centers">
+                            <form action="index.html" method="post">
+                                <div class="imgcontainer">
+
+
+                                </div>
+
+                                <div class="container">
+                                    <label class="label">Email or username</label>
+                                    <input type="text" placeholder="Enter Username" name="uname" required>
+
+                                    <label class="label">Password</label>
+                                    <input type="password" placeholder="Enter Password" name="psw" required>
+
+                                    <br>
+                                    <label>
+                                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                                    </label>
+                                    <button type="submit">
+                                        Login
+                                    </button>
+                                </div>
+
+                                <h6 class="subtitle is-6 has-text-centered">or</h6>
+                                <div class="has-text-centered">
+                                    <a href="signup.html" class="button is-link">sign up</a>
+
+                                </div>
+                                <!-- <div class="container" style="background-color:#f1f1f1">
                                         <button type="button" class="cancelbtn">Cancel</button>
                                         <span class="psw">Forgot <a href="#">password?</a></span> -->
-                                </div>
-                                <p class="card-footer-item register">
-                                    <span>
-        
+                        </div>
+                        <p class="card-footer-item register">
+                            <span>
+
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <section class="section">
@@ -250,6 +333,8 @@
     </footer>
 
     <script src="assets/javascript/logic.js"></script>
+    <script src="assets/javascript/config-db.js"></script>
+    <script src="assets/javascript/user.js"></script>
 </body>
 
 
