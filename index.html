@@ -8,8 +8,9 @@
     <title>On Topic</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.1/css/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="assets/css/acc.css">
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -150,28 +151,16 @@
                             NASA Image of the Day
                         </span>
                     </button>
-
-
                 </p>
             </div>
         </div>
 
         <div class="container">
-            <article class="message is-dark">
-                <div class="message-header">
+            <article class="message is-dark accordion">
+                <div class="message-header accordion-header iconAcc">
                     <p>Related Articles</p>
-                    <button class="button" id="plusButton">
-                        <span class="icon is-small">
-                            <i class="fas fa-plus-circle"></i>
-                        </span>
-                    </button>
-                    <button class="button" id="minusButton" style="display: none;">
-                        <span class="icon is-small">
-                            <i class="fas fa-minus-circle"></i>
-                        </span>
-                    </button>
                 </div>
-                <div class="message-body current-articles">
+                <div class="message-body current-articles accordion-content">
                     <article class="message is-info">
                         <div class="columns">
                             <div class="column is-1">
@@ -201,11 +190,11 @@
         </article>
         <br />
         <div class="container">
-            <article class="message is-dark">
-                <div class="message-header">
+            <article class="message is-dark accordion">
+                <div class="message-header accordion-header iconAcc">
                     Related Videos
                 </div>
-                <div class="message-body video-pulls">
+                <div class="message-body video-pulls accordion-content">
                     <figure class="image is-16by9">
                         <div id="player1" class="has-ratio"></div>
                     </figure>
@@ -238,6 +227,7 @@
     </footer>
 
     <script src="assets/javascript/logic.js"></script>
+    <script src="assets/javascript/acc.js"></script>
 </body>
 
 
