@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     var usersRef = database.ref("/user");
 
-    $('#sign-up-save-btn').on('click', function () {
+    /*$('#sign-up-save-btn').on('click', function () {
         event.preventDefault();
         // Initialize form validation on the registration form.
         // It has the name attribute "registration"
@@ -72,11 +72,11 @@ $(document).ready(function () {
                         // Handle Errors here.
                         var errorCode = error.code;
                         var errorMessage = error.message;
-                        /*if (errorCode == 'auth/weak-password') {
+                        if (errorCode == 'auth/weak-password') {
                             alert('The password is too weak.');
                         } else {
                             alert(errorMessage);
-                        }*/
+                        }
                         console.log(error);
                     }).then(function (response) {
                         console.log(response);
@@ -86,5 +86,87 @@ $(document).ready(function () {
             }
         });
 
+    });*/
+
+    $('#sign-up-save-btn').on('click', function () {
+        // Initialize form validation on the registration form.
+        // It has the name attribute "registration"
+        $("form[name='registration']").validate({
+            // Specify validation rules
+            rules: {
+                // The key name on the left side is the name attribute
+                // of an input field. Validation rules are defined
+                // on the right side
+                firstname: "required",
+                lastname: "required",
+                email: {
+                    required: true,
+                    // Specify that email should be validated
+                    // by the built-in "email" rule
+                    email: true
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                password_confirm: {
+                    minlength: 5,
+                    equalTo: "#password"
+                }
+            },
+            // Specify validation error messages
+            messages: {
+                firstname: "Please enter your firstname",
+                lastname: "Please enter your lastname",
+                password: {
+                    required: "Please enter a password",
+                    minlength: "Your password must be at least 5 characters long"
+                },
+                email: "Please enter a valid email address"
+            },
+            // Make sure the form is submitted to the destination defined
+            // in the "action" attribute of the form when valid
+            submitHandler: function (form) {
+                var userObj = {
+                    firstname: $("#firstname").val(),
+                    lastname: $("#lastname").val(),
+                    email: $("#email").val(),
+                    password: $("#password").val()
+                }
+
+                //console.log(userObj);
+                firebase.auth().createUserWithEmailAndPassword(userObj.email, userObj.password)
+                    .catch(function (error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        if (errorCode == 'auth/weak-password') {
+                            alert('The password is too weak.');
+                        } else {
+                            //alert(errorMessage);
+                            var newDiv = $("<article>");
+                            newDiv.addClass("message is-danger");
+                            newDiv.append("<div class='message-body'>" + errorMessage + "</div>");
+                            $("#errorMsgDiv").append(newDiv);
+                        }
+                        //console.log(error);
+                    }).then(function (response) {
+                        if (response) {
+                            if (response.additionalUserInfo.isNewUser == true) {
+
+                            }
+                        }
+
+                        /*<article class="message is-success">
+                            <div class="message-header">
+                                <p>Thank you for your registration!!</p>
+                            </div>
+                            <div class="message-body">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+  </div>
+                        </article>*/
+                    });
+            }
+        });
     });
 }); 

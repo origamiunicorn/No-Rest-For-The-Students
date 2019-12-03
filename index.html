@@ -74,11 +74,13 @@
                 <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
-                <form name="sign-up-frm">
+                <form action="" name="registration">
+                    <div id="errorMsgDiv"></div>
                     <div class="field">
                         <label class="label">Firstname</label>
                         <p class="control has-icons-left">
-                            <input id="firstname" class="input" type="text" placeholder="Firstname">
+                            <input id="firstname" name="firstname" class="input" type="text" placeholder="Firstname"
+                                autocomplete="off">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-user"></i>
                             </span>
@@ -88,7 +90,8 @@
                     <div class="field">
                         <label class="label">Lastname</label>
                         <p class="control has-icons-left">
-                            <input id="lastname" class="input" type="text" placeholder="Lastname">
+                            <input id="lastname" name="lastname" class="input" type="text" placeholder="Lastname"
+                                autocomplete="off">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-user"></i>
                             </span>
@@ -98,7 +101,8 @@
                     <div class="field">
                         <label class="label">Email Address</label>
                         <p class="control has-icons-left">
-                            <input id="email" class="input" type="email" placeholder="Email Address">
+                            <input id="email" name="email" class="input" type="email" placeholder="Email Address"
+                                autocomplete="off">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-envelope"></i>
                             </span>
@@ -108,7 +112,8 @@
                     <div class="field">
                         <label class="label">Password</label>
                         <p class="control has-icons-left">
-                            <input id="password" class="input" type="password" placeholder="Password">
+                            <input id="password" name="password" class="input" type="password" placeholder="Password"
+                                autocomplete="off">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-lock"></i>
                             </span>
@@ -118,20 +123,16 @@
                     <div class="field">
                         <label class="label">Confirm Password</label>
                         <p class="control has-icons-left">
-                            <input class="input" type="password" placeholder="Confirm Password">
+                            <input id="password_confirm" name="password_confirm" class="input" type="password"
+                                placeholder="Confirm Password" autocomplete="off">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-lock"></i>
                             </span>
                         </p>
                     </div>
 
-                    <div class="field">
-                        <p class="control">
-                            <button id="sign-up-save-btn" class="button is-success">
-                                Sign Up
-                            </button>
-                        </p>
-                    </div>
+                    <button id="sign-up-save-btn" type="submit" class="button is-link">Sign Up</button>
+
                 </form>
             </section>
             <footer class="modal-card-foot">
@@ -154,34 +155,44 @@
 
                     <div class="column is-3 has-text-right-desktop has-text-centered-touch topButtons">
                         <div class="centers">
-                            <form action="index.html" method="post">
-                                <div class="imgcontainer">
+
+                            <!--form action="index.html" method="post"-->
+
+                            <!--div class="imgcontainer">
 
 
+                            </div>
+
+                            <div class="container">
+                                <label class="label">Email or username</label>
+                                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                                <label class="label">Password</label>
+                                <input type="password" placeholder="Enter Password" name="psw" required>
+
+                                <br>
+                                <label>
+                                    <input type="checkbox" checked="checked" name="remember"> Remember me
+                                </label>
+                                <button id="login-btn">
+                                    Login
+                                </button>
+                            </div-->
+
+                            <div class="container buttonContainer">
+                                <div class="buttons childButtonContainer">
+                                    <p class="control">
+                                        <button id="login-btn" class="button is-link">Login</button>
+                                    </p>
+                                    <p class="control">
+                                        <button id="sign-up-btn" class="button is-link">Sign up</button>
+                                    </p>
                                 </div>
+                            </div>
+                            <div id="welcomeUser"></div>
 
-                                <div class="container">
-                                    <label class="label">Email or username</label>
-                                    <input type="text" placeholder="Enter Username" name="uname" required>
 
-                                    <label class="label">Password</label>
-                                    <input type="password" placeholder="Enter Password" name="psw" required>
-
-                                    <br>
-                                    <label>
-                                        <input type="checkbox" checked="checked" name="remember"> Remember me
-                                    </label>
-                                    <button type="submit">
-                                        Login
-                                    </button>
-                                </div>
-
-                                <h6 class="subtitle is-6 has-text-centered">or</h6>
-                                <div class="has-text-centered">
-                                    <a href="signup.html" class="button is-link">sign up</a>
-
-                                </div>
-                                <!-- <div class="container" style="background-color:#f1f1f1">
+                            <!-- <div class="container" style="background-color:#f1f1f1">
                                         <button type="button" class="cancelbtn">Cancel</button>
                                         <span class="psw">Forgot <a href="#">password?</a></span> -->
                         </div>
