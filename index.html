@@ -142,6 +142,50 @@
         </div>
     </div>
 
+    <!-- Login Modal -->
+    <div class="modal login-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title fact-title"></p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form action="" name="loginFrm">
+                    <div id="errorMsgLoginDiv"></div>
+                    <div class="field">
+                        <label class="label">Email Address</label>
+                        <p class="control has-icons-left">
+                            <input id="login_email" name="login_email" class="input" type="email"
+                                placeholder="Email Address" autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <p class="control has-icons-left">
+                            <input id="login_password" name="login_password" class="input" type="password"
+                                placeholder="Password" autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <button id="login-auth-btn" type="submit" class="button is-link">Login</button>
+
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <!-- Maybe a save button if they like the fact? -->
+                <button class="close-button">Close</button>
+            </footer>
+        </div>
+    </div>
+
     <section class="hero is-info">
         <div class="hero-body">
             <div class="container">
@@ -180,6 +224,7 @@
                             </div-->
 
                             <div id="welcomeUser"></div>
+                            <div id="errorMsgLogoutDiv"></div>
                             <div class="container buttonContainer">
                                 <div class="buttons childButtonContainer loginBox">
                                 </div>
@@ -190,9 +235,6 @@
                                         <button type="button" class="cancelbtn">Cancel</button>
                                         <span class="psw">Forgot <a href="#">password?</a></span> -->
                         </div>
-                        <p class="card-footer-item register">
-                            <span>
-
                     </div>
                 </div>
             </div>
