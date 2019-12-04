@@ -19,8 +19,8 @@ form .error {
   color: #ff0000;
 }
 
-p.control{
-  padding-left: 20px;
+.login-box-css{
+  padding-left: 25px;
 }
 /* The Modal (background) */
 .modal {
