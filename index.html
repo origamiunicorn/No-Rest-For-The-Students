@@ -31,7 +31,7 @@
 
 <body>
     <!-- Nasa Image Modal -->
-    <div id='modal-id' class="modal modal-fx-newsPaper">
+    <div style="z-index: 50" id='modal-id' class="modal modal-fx-newsPaper">
         <div class="modal-background"></div>
         <div class='modal-card'>
             <header class='modal-card-head'>
@@ -51,7 +51,7 @@
     </div>
 
     <!-- Fact of the Day Modal -->
-    <div class="modal fact-modal">
+    <div style="z-index: 50" class="modal fact-modal">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
@@ -66,7 +66,7 @@
     </div>
 
     <!-- Sign Up Modal -->
-    <div class="modal signup-modal">
+    <div style="z-index: 50" class="modal signup-modal">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
@@ -130,20 +130,20 @@
                             </span>
                         </p>
                     </div>
-
+                    <div class="start">
                     <button id="sign-up-save-btn" type="submit" class="button is-link">Sign Up</button>
-
+                    </div>
                 </form>
             </section>
             <footer class="modal-card-foot">
                 <!-- Maybe a save button if they like the fact? -->
-                <button class="close-button">Close</button>
+                
             </footer>
         </div>
     </div>
-
+    <br>
     <!-- Login Modal -->
-    <div class="modal login-modal">
+    <div style="z-index: 50" class="modal login-modal">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
@@ -195,13 +195,15 @@
                                 </span>
                             </p>
                         </div>
+                        <div class="start">
                         <button id="reset-fp-btn" type="submit" class="button is-link">Reset password</button>
+                        </div>
                     </form>
                 </div>
             </section>
             <footer class="modal-card-foot">
                 <!-- Maybe a save button if they like the fact? -->
-                <button class="close-button">Close</button>
+                
             </footer>
         </div>
     </div>
