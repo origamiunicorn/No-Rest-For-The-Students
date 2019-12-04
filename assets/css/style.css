@@ -7,6 +7,15 @@
   margin-bottom: 15px;
 }
 
+.loginButton {
+  display: table;
+  margin: 0 auto;
+}
+
+#welcomeUser {
+  font-size: 1.7em;
+}
+
 .randomButton {
   margin-right: 5px;
 }
