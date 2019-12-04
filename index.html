@@ -29,6 +29,7 @@
 
 </head>
 
+<<<<<<< HEAD
 <body class="site">
     <div class="site-content">
         <!-- Nasa Image Modal -->
@@ -42,6 +43,24 @@
                 <div class='card-image'>
                     <figure class='image nasa-img is-4by3'></figure>
                 </div>
+=======
+<body>
+    <!-- Nasa Image Modal -->
+    <div style="z-index: 50" id='modal-id' class="modal modal-fx-newsPaper">
+        <div class="modal-background"></div>
+        <div class='modal-card'>
+            <header class='modal-card-head'>
+                <p class="modal-card-title nasa-title">NASA Picture of the Day</p>
+                <button class="modal-close is-large" aria-label="close"></button>
+            </header>
+            <div class='card-image'>
+                <figure class='image nasa-img is-4by3'></figure>
+            </div>
+
+            <footer class='modal-card-body'>
+                <p class='nasa-desc'></p>
+            </footer>
+>>>>>>> master
 
                 <footer class='modal-card-body'>
                     <p class='nasa-desc'></p>
@@ -49,6 +68,7 @@
 
             </div>
 
+<<<<<<< HEAD
         </div>
 
         <!-- Fact of the Day Modal -->
@@ -99,6 +119,112 @@
                             </p>
                         </div>
 
+=======
+    <!-- Fact of the Day Modal -->
+    <div style="z-index: 50" class="modal fact-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title fact-title"></p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body rando-fact">
+            </section>
+            <footer class="modal-card-foot">
+            </footer>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div style="z-index: 50" class="modal signup-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title fact-title"></p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form action="" name="registration">
+                    <div id="errorMsgDiv"></div>
+                    <div class="field">
+                        <label class="label">Firstname</label>
+                        <p class="control has-icons-left">
+                            <input id="firstname" name="firstname" class="input" type="text" placeholder="Firstname"
+                                autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Lastname</label>
+                        <p class="control has-icons-left">
+                            <input id="lastname" name="lastname" class="input" type="text" placeholder="Lastname"
+                                autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Email Address</label>
+                        <p class="control has-icons-left">
+                            <input id="email" name="email" class="input" type="email" placeholder="Email Address"
+                                autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <p class="control has-icons-left">
+                            <input id="password" name="password" class="input" type="password" placeholder="Password"
+                                autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Confirm Password</label>
+                        <p class="control has-icons-left">
+                            <input id="password_confirm" name="password_confirm" class="input" type="password"
+                                placeholder="Confirm Password" autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="start">
+                    <button id="sign-up-save-btn" type="submit" class="button is-link">Sign Up</button>
+                    </div>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <!-- Maybe a save button if they like the fact? -->
+                
+            </footer>
+        </div>
+    </div>
+    <br>
+    <!-- Login Modal -->
+    <div style="z-index: 50" class="modal login-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title fact-title"></p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div id="errorMsgLoginDiv"></div>
+                <div id="login-div">
+                    <form action="" name="loginFrm">
+>>>>>>> master
                         <div class="field">
                             <label class="label">Email Address</label>
                             <p class="control has-icons-left">
@@ -131,6 +257,7 @@
                                 </span>
                             </p>
                         </div>
+<<<<<<< HEAD
 
                         <button id="sign-up-save-btn" type="submit" class="button is-link">Sign Up</button>
 
@@ -141,6 +268,18 @@
                     <button class="close-button">Close</button>
                 </footer>
             </div>
+=======
+                        <div class="start">
+                        <button id="reset-fp-btn" type="submit" class="button is-link">Reset password</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <!-- Maybe a save button if they like the fact? -->
+                
+            </footer>
+>>>>>>> master
         </div>
 
         <!-- Login Modal -->
