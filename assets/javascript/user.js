@@ -67,7 +67,7 @@ function showUser(uName) {
 
 function showLoginBox() {
     $("#welcomeUser").empty();
-    $(".loginBox").html('<p class="control"><button id="login-btn" class="button is-link">Login</button></p><p class="control"><button id="sign-up-btn" class="button is-link">Sign up</button></p>');
+    $(".loginBox").html('<p class="control login-box-css"><button id="login-btn" class="button is-link">Login</button></p><p class="control login-box-css"><button id="sign-up-btn" class="button is-link">Sign up</button></p>');
 }
 
 function showErrorMessage(error, errorDiv, msgtype = 'is-danger') {
