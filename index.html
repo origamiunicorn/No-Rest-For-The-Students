@@ -8,8 +8,10 @@
     <title>On Topic</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.1/css/all.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="assets/css/acc.css">
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
@@ -18,11 +20,18 @@
     <!--  Bulma Modal FX CDN and Script  -->
     <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
     <script type="text/javascript" src="https://unpkg.com/bulma-modal-fx/dist/js/modal-fx.min.js"></script>
+    <!--The core Firebase JS SDK is always required and must be listed first-->
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-app.js"></script>
+    <!-- Firebase References -->
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+
 </head>
 
 <body>
     <!-- Nasa Image Modal -->
-    <div id='modal-id' class="modal modal-fx-newsPaper">
+    <div style="z-index: 50" id='modal-id' class="modal modal-fx-newsPaper">
         <div class="modal-background"></div>
         <div class='modal-card'>
             <header class='modal-card-head'>
@@ -42,7 +51,7 @@
     </div>
 
     <!-- Fact of the Day Modal -->
-    <div class="modal fact-modal">
+    <div style="z-index: 50" class="modal fact-modal">
         <div class="modal-background"></div>
         <div class="modal-card">
             <header class="modal-card-head">
@@ -50,9 +59,150 @@
                 <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body rando-fact">
-
             </section>
             <footer class="modal-card-foot">
+            </footer>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div style="z-index: 50" class="modal signup-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title fact-title"></p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <form action="" name="registration">
+                    <div id="errorMsgDiv"></div>
+                    <div class="field">
+                        <label class="label">First Name</label>
+                        <p class="control has-icons-left">
+                            <input id="firstname" name="firstname" class="input" type="text" placeholder="Firstname"
+                                autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Last Name</label>
+                        <p class="control has-icons-left">
+                            <input id="lastname" name="lastname" class="input" type="text" placeholder="Lastname"
+                                autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-user"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Email Address</label>
+                        <p class="control has-icons-left">
+                            <input id="email" name="email" class="input" type="email" placeholder="Email Address"
+                                autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <p class="control has-icons-left">
+                            <input id="password" name="password" class="input" type="password" placeholder="Password"
+                                autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Confirm Password</label>
+                        <p class="control has-icons-left">
+                            <input id="password_confirm" name="password_confirm" class="input" type="password"
+                                placeholder="Confirm Password" autocomplete="off">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="start">
+                        <button id="sign-up-save-btn" type="submit" class="button is-link">Sign Up</button>
+                    </div>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <!-- Maybe a save button if they like the fact? -->
+
+            </footer>
+        </div>
+    </div>
+    <br>
+    <!-- Login Modal -->
+    <div style="z-index: 50" class="modal login-modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title fact-title"></p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <div id="errorMsgLoginDiv"></div>
+                <div id="login-div">
+                    <form action="" name="loginFrm">
+                        <div class="field">
+                            <label class="label">Email Address</label>
+                            <p class="control has-icons-left">
+                                <input id="login_email" name="login_email" class="input" type="email"
+                                    placeholder="Email Address" autocomplete="off">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <p class="control has-icons-left">
+                                <input id="login_password" name="login_password" class="input" type="password"
+                                    placeholder="Password" autocomplete="off">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
+
+                        <button id="login-auth-btn" type="submit" class="button is-link">Login</button>
+
+                        <div class="container">
+                            <a id="forgot-pwd-id" href="javascript:void(0);">Forgot password?</a></span>
+                        </div>
+                    </form>
+                </div>
+                <div id="forgot-pwd-div">
+                    <form action="" name="forgotPwdFrm">
+                        <div class="field">
+                            <label class="label">Email Address</label>
+                            <p class="control has-icons-left">
+                                <input id="fp_email" name="fp_email" class="input" type="email"
+                                    placeholder="Email Address" autocomplete="off">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="start">
+                            <button id="reset-fp-btn" type="submit" class="button is-link">Reset password</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <!-- Maybe a save button if they like the fact? -->
 
             </footer>
         </div>
@@ -68,26 +218,13 @@
                             On Topic
                         </h1>
                     </div>
-
                     <div class="column is-3 has-text-right-desktop has-text-centered-touch topButtons">
-                        <form action="action_page.php" method="post">
-                            <div class="imgcontainer">
-                                <img src="https://login.gov/assets/img/login-gov-600x314.png" alt="Avatar"
-                                    class="avatar">
+                        <div id="welcomeUser" class="loginButton"></div>
+                        <div id="errorMsgLogoutDiv"></div>
+                        <div class="container buttonContainer loginButton">
+                            <div class="buttons childButtonContainer loginBox">
                             </div>
-
-                            <div id="modal"></div>
-                            <div id="login">
-                                <div id="triangle"></div>
-                                <h1>Log in</h1>
-                                <form method="GET" action="index.html">
-                                    <input type="Username" placeholder="Username" />
-                                    <input type="password" placeholder="Password" />
-
-                                    <input type="submit" value="Login" />
-
-                                </form>
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,7 +236,7 @@
             <div class="field is-grouped">
                 <div class="control is-expanded has-icons-left searchBarDiv">
                     <input class="input search-bar searchTerm" id="searchTermSmall" type="text"
-                        placeholder="Search for an event..." name="search">
+                        placeholder="Search by keyword..." name="search">
                     <span class="icon is-small is-left">
                         <i class="fas fa-search"></i>
                     </span>
@@ -147,74 +284,38 @@
                             NASA Image of the Day
                         </span>
                     </button>
-
-
                 </p>
             </div>
         </div>
 
         <div class="container">
-            <article class="message is-dark">
-                <div class="message-header">
+            <article class="message is-dark accordion">
+                <div class="message-header accordion-header iconAcc">
                     <p>Related Articles</p>
-                    <button class="button" id="plusButton">
-                        <span class="icon is-small">
-                            <i class="fas fa-plus-circle"></i>
-                        </span>
-                    </button>
-                    <button class="button" id="minusButton" style="display: none;">
-                        <span class="icon is-small">
-                            <i class="fas fa-minus-circle"></i>
-                        </span>
-                    </button>
                 </div>
-                <div class="message-body current-articles">
-                    <!-- <article class="message is-info">
-                        <div class="columns">
-                            <div class="column is-1">
-                                <img src="https://picsum.photos/id/970/128/128" />
-                            </div>
-                            <div class="column is-11">
-                                <h1 class="title">Article Title</h1>
-                                <h2 class="subtitle">by Some Author</h2>
-                            </div>
-                        </div>
-                        <div class="message-body">
-                            I am a snippet of information from an article. Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore
-                            et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut
-                            aliquip
-                            ex ea commodo consequat.
-                        </div>
-                        <br />
-                        <a href="#">Link to Article.</a>
-                    </article> -->
-                </div>
+                <div class="message-body current-articles accordion-content"> </div>
         </div>
         </article>
         <br />
         <div class="container">
-            <article class="message is-dark">
-                <div class="message-header">
+            <article class="message is-dark accordion">
+                <div class="message-header accordion-header iconAcc">
                     Related Videos
                 </div>
-                <div class="message-body video-pulls">
-                    <figure class="image is-16by9">
+                <div class="message-body video-pulls accordion-content">
+                    <figure class="image is-16by9" style="display: none;">
                         <div id="player1" class="has-ratio"></div>
                     </figure>
-                    <figure class="image is-16by9">
+                    <figure class="image is-16by9" style="display: none;">
                         <div id="player2" class="has-ratio"></div>
                     </figure>
-                    <figure class="image is-16by9">
+                    <figure class="image is-16by9" style="display: none;">
                         <div id="player3" class="has-ratio"></div>
                     </figure>
-                    <figure class="image is-16by9">
+                    <figure class="image is-16by9" style="display: none;">
                         <div id="player4" class="has-ratio"></div>
                     </figure>
-                    <figure class="image is-16by9">
+                    <figure class="image is-16by9" style="display: none;">
                         <div id="player5" class="has-ratio"></div>
                     </figure>
                 </div>
@@ -234,7 +335,9 @@
     </footer>
 
     <script src="assets/javascript/logic.js"></script>
+    <script src="assets/javascript/config-db.js"></script>
+    <script src="assets/javascript/user.js"></script>
+    <script src="assets/javascript/acc.js"></script>
 </body>
-
 
 </html>
