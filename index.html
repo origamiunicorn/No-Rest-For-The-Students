@@ -218,15 +218,43 @@
                     </div>
                     <div class="column is-3 has-text-right-desktop has-text-centered-touch topButtons">
                         <div class="centers">
-                            <div id="welcomeUser"></div>
-                            <div id="errorMsgLogoutDiv"></div>
-                            <div class="container buttonContainer">
-                                <div class="buttons childButtonContainer loginBox">
+                            <form action="index.html" method="post">
+                                <div class="imgcontainer"> </div>
+                                <div class="container">
+                                    <label class="label">Email or username</label>
+                                    <input type="text" placeholder="Enter Username" name="uname" required>
+                                    <label class="label">Password</label>
+                                    <input type="password" placeholder="Enter Password" name="psw" required>
+                                    <br />
+                                    <label>
+                                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                                    </label>
+                                    <button type="submit">
+                                        Login
+                                    </button>
                                 </div>
-                            </div>
+
+                                <h6 class="subtitle is-6 has-text-centered">or</h6>
+                                <div class="has-text-centered">
+                                    <a href="signup.html" class="button is-link">sign up</a>
+                                </div>
+                                <!-- <div class="container" style="background-color:#f1f1f1">
+                                        <button type="button" class="cancelbtn">Cancel</button>
+                                        <span class="psw">Forgot <a href="#">password?</a></span> -->
                         </div>
+                        <p class="card-footer-item register"></p>
                     </div>
                 </div>
+            </div>
+            <div id="welcomeUser"></div>
+            <div id="errorMsgLogoutDiv"></div>
+            <div class="container buttonContainer">
+                <div class="buttons childButtonContainer loginBox">
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
     </section>
 
     <section class="section">
@@ -358,9 +386,9 @@
     </footer>
 
     <script src="assets/javascript/logic.js"></script>
-    <script src="assets/javascript/acc.js"></script>
     <script src="assets/javascript/config-db.js"></script>
     <script src="assets/javascript/user.js"></script>
+    <script src="assets/javascript/acc.js"></script>
 </body>
 
 
