@@ -19,14 +19,15 @@ The NASA Image of the Day button opens a modal which displays the Astronomy Pict
 * Bulma CSS
 * FontAwesome
 * jQuery
+* jQuery Validate
 
 ## APIs Used
-* Currents
-* NASA Picture of the Day
-* News API
+* CurrentsAPI
+* NASA POD API
+* NewsAPI
 * Numbers API (Date)
-* Wikipedia API
-* YouTube
+* Wikidata API
+* YouTube Data API
 
 ## Other Technologies Used
 * Firebase 
