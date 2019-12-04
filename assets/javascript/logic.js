@@ -283,6 +283,9 @@ function searchVideos(searchTerm) {
             }
             playerInfoList.push(videoObj);
         });
+
+        $(".is-16by9").toggle();
+
         onYouTubePlayerAPIReady();
 
         function onYouTubePlayerAPIReady() {
@@ -310,10 +313,10 @@ function searchVideos(searchTerm) {
 // Get the modal
 // Get the modal
 var modal = document.getElementById('id01');
-            
+
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
