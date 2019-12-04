@@ -7,6 +7,15 @@
   margin-bottom: 15px;
 }
 
+.loginButton {
+  display: table;
+  margin: 0 auto;
+}
+
+#welcomeUser {
+  font-size: 1.7em;
+}
+
 .randomButton {
   margin-right: 5px;
 }
@@ -17,6 +26,16 @@
 
 form .error {
   color: #ff0000;
+}
+
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
 }
 
 .login-box-css{
