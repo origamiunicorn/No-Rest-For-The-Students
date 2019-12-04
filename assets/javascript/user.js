@@ -27,6 +27,9 @@ $(document).ready(function () {
     /* End - to show the login modal */
 
 
+    /* Forgot password */
+    $(document).on("click", "#forgot-pwd-id", showFPModal);
+
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
@@ -37,7 +40,7 @@ $(document).ready(function () {
         if (user) {
             //var userData = firebase.auth().currentUser; //userData.uid
             //console.log(user.email);
-            //console.log(user.displayName);
+            console.log(user);
             var uname = (user.displayName) ? user.displayName : sessionStorage.getItem("uName");
             showUser(uname);
         } else {
@@ -48,6 +51,9 @@ $(document).ready(function () {
     $(document).on("click", "#login-auth-btn", login);
     $(document).on("click", "#sign-up-save-btn", save);
     $(document).on("click", "#logout-btn", logout);
+    $(document).on("click", "#reset-fp-btn", reset_password);
+
+    $("#forgot-pwd-div").hide();
 });
 
 function showUser(uName) {
@@ -64,22 +70,29 @@ function showLoginBox() {
     $(".loginBox").html('<p class="control"><button id="login-btn" class="button is-link">Login</button></p><p class="control"><button id="sign-up-btn" class="button is-link">Sign up</button></p>');
 }
 
-function showErrorMessage(error, errorDiv) {
-    $("#errorMsgDiv").empty();
+function showErrorMessage(error, errorDiv, msgtype = 'is-danger') {
+    $("#" + errorDiv).empty();
     var newDiv = $("<article>");
-    newDiv.addClass("message is-danger");
+    newDiv.addClass("message " + msgtype);
     newDiv.append("<div class='message-body'>" + error + "</div>");
     $("#" + errorDiv).append(newDiv);
 }
 
 function showSignUpModal() {
-    $('.signup-modal').addClass('is-active')
-    $('.signup-modal').addClass('is-clipped')
+    $('.signup-modal').addClass('is-active');
+    $('.signup-modal').addClass('is-clipped');
 }
 
 function showLoginModal() {
-    $('.login-modal').addClass('is-active')
-    $('.login-modal').addClass('is-clipped')
+    $("#forgot-pwd-div").hide();
+    $("#login-div").show();
+    $('.login-modal').addClass('is-active');
+    $('.login-modal').addClass('is-clipped');
+}
+
+function showFPModal() {
+    $("#login-div").hide();
+    $("#forgot-pwd-div").show();
 }
 
 function login() {
@@ -220,5 +233,34 @@ function logout() {
         // An error happened.
         console.log(error);
         //showErrorMessage('Oops!! Something went wrong. Please try again later', 'errorMsgLogoutDiv');
+    });
+}
+
+function reset_password() {
+    $("form[name='forgotPwdFrm']").validate({
+        // Specify validation rules
+        rules: {
+            fp_email: {
+                required: true,
+                // Specify that email should be validated
+                // by the built-in "email" rule
+                email: true
+            }
+        },
+        // Specify validation error messages
+        messages: {
+            fp_email: "Please enter a valid email address"
+        },
+        // Make sure the form is submitted to the destination defined
+        // in the "action" attribute of the form when valid
+        submitHandler: function (form) {
+            firebase.auth().sendPasswordResetEmail($("#fp_email").val()).then(function () {
+                // Email sent.
+                showErrorMessage("Email was successfully sent to your email address", "errorMsgLoginDiv", "is-success");
+            }).catch(function (error) {
+                showErrorMessage(error, "errorMsgLoginDiv");
+            });
+            $("#fp_email").val('');
+        }
     });
 }

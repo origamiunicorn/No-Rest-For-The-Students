@@ -151,33 +151,53 @@
                 <button class="delete" aria-label="close"></button>
             </header>
             <section class="modal-card-body">
-                <form action="" name="loginFrm">
-                    <div id="errorMsgLoginDiv"></div>
-                    <div class="field">
-                        <label class="label">Email Address</label>
-                        <p class="control has-icons-left">
-                            <input id="login_email" name="login_email" class="input" type="email"
-                                placeholder="Email Address" autocomplete="off">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                        </p>
-                    </div>
+                <div id="errorMsgLoginDiv"></div>
+                <div id="login-div">
+                    <form action="" name="loginFrm">
+                        <div class="field">
+                            <label class="label">Email Address</label>
+                            <p class="control has-icons-left">
+                                <input id="login_email" name="login_email" class="input" type="email"
+                                    placeholder="Email Address" autocomplete="off">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </p>
+                        </div>
 
-                    <div class="field">
-                        <label class="label">Password</label>
-                        <p class="control has-icons-left">
-                            <input id="login_password" name="login_password" class="input" type="password"
-                                placeholder="Password" autocomplete="off">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </p>
-                    </div>
+                        <div class="field">
+                            <label class="label">Password</label>
+                            <p class="control has-icons-left">
+                                <input id="login_password" name="login_password" class="input" type="password"
+                                    placeholder="Password" autocomplete="off">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </p>
+                        </div>
 
-                    <button id="login-auth-btn" type="submit" class="button is-link">Login</button>
+                        <button id="login-auth-btn" type="submit" class="button is-link">Login</button>
 
-                </form>
+                        <div class="container">
+                            <a id="forgot-pwd-id" href="javascript:void(0);">Forgot password?</a></span>
+                        </div>
+                    </form>
+                </div>
+                <div id="forgot-pwd-div">
+                    <form action="" name="forgotPwdFrm">
+                        <div class="field">
+                            <label class="label">Email Address</label>
+                            <p class="control has-icons-left">
+                                <input id="fp_email" name="fp_email" class="input" type="email"
+                                    placeholder="Email Address" autocomplete="off">
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </p>
+                        </div>
+                        <button id="reset-fp-btn" type="submit" class="button is-link">Reset password</button>
+                    </form>
+                </div>
             </section>
             <footer class="modal-card-foot">
                 <!-- Maybe a save button if they like the fact? -->
@@ -199,45 +219,15 @@
 
                     <div class="column is-3 has-text-right-desktop has-text-centered-touch topButtons">
                         <div class="centers">
-
-                            <!--form action="index.html" method="post"-->
-
-                            <!--div class="imgcontainer">
-
-
-                            </div>
-
-                            <div class="container">
-                                <label class="label">Email or username</label>
-                                <input type="text" placeholder="Enter Username" name="uname" required>
-
-                                <label class="label">Password</label>
-                                <input type="password" placeholder="Enter Password" name="psw" required>
-
-                                <br>
-                                <label>
-                                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                                </label>
-                                <button id="login-btn">
-                                    Login
-                                </button>
-                            </div-->
-
                             <div id="welcomeUser"></div>
                             <div id="errorMsgLogoutDiv"></div>
                             <div class="container buttonContainer">
                                 <div class="buttons childButtonContainer loginBox">
                                 </div>
                             </div>
-
-
-                            <!-- <div class="container" style="background-color:#f1f1f1">
-                                        <button type="button" class="cancelbtn">Cancel</button>
-                                        <span class="psw">Forgot <a href="#">password?</a></span> -->
                         </div>
                     </div>
                 </div>
-            </div>
     </section>
 
     <section class="section">
