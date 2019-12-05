@@ -61,7 +61,8 @@ The NASA Image of the Day button opens a modal which displays the Astronomy Pict
 * YouTube Data API
 
 ## Other Technologies Used
-* Firebase 
+* Firebase
+* Firebase Authentication
 
 ## Stretch Goals
 * Pagination of search results.
