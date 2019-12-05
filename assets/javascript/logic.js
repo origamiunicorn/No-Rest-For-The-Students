@@ -2,7 +2,6 @@ $(document).ready(function () {
     newsAPI('none');
     $(this).scrollTop(0);
 
-
     var searchWithin;
     var searchTerm;
     $('.search-bar').keyup(function (event) {
@@ -41,16 +40,27 @@ $(document).ready(function () {
             $(this).append('<div id="player' + (index++) + '" class="has-ratio"></div>');
         });
         searchVideos(searchTerm);
-
     });
 
-    /* 
-        Code to query the CurrentsAPI 
-    */
+    // Scroll Button Code
+    var btn = $('#scrollButton');
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+    btn.on('click', function (event) {
+        event.preventDefault();
+        $('html, body').animate({ scrollTop: 0 }, '300');
+    });
+
+    /*  Code to query the CurrentsAPI */
     function currentsAPI(search) {
         var apikey = '&apiKey=DZDcAWMI7tHZgDL-0HsY9xdV2PP2WERqSJ4RodnZ84DGyEwJ';
         var queryURL;
-        var lang = '&language=en'
+        var lang = '&language=en';
         var keywords = search;
 
         queryURL = 'https://api.currentsapi.services/v1/search?keywords=' + keywords + lang + apikey;
@@ -82,14 +92,12 @@ $(document).ready(function () {
                     '<div class="message-body">' + response.news[i].description + '</div>' + '<br />' +
                     '<a href="' + response.news[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
                     '<hr />' +
-                    '</article>')
+                    '</article>');
             }
         });
     }
 
-    /*  
-    Code to query the NewsAPI
-    */
+    /* Code to query the NewsAPI */
     function newsAPI(search) {
         var apiNews = '&apiKey=c2704563e1294b96ae07dbe18fda2af6';
         var keyword = search;
@@ -99,15 +107,12 @@ $(document).ready(function () {
         }
         else {
 
-            queryNews = 'https://newsapi.org/v2/everything?q=' + keyword + apiNews
+            queryNews = 'https://newsapi.org/v2/everything?q=' + keyword + apiNews;
         }
         $.ajax({
             url: queryNews,
             method: "GET"
         }).then(function (response) {
-
-
-
             for (var i = 0; i < 10; i++) {
                 var publish = moment(response.articles[i].publishedAt);
                 var publishDate = publish.year() + '/' + (publish.month() + 1) + '/' + publish.date();
@@ -129,17 +134,15 @@ $(document).ready(function () {
                     '<div class="message-body">' + response.articles[i].description + '</div>' + '<br />' +
                     '<a href="' + response.articles[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
                     '<hr />' +
-                    '</article>')
+                    '</article>');
             }
-        })
+        });
     }
 
-
     /* Start - To show Nasa Image of the day   */
-
     var today = moment().format('YYYY-MM-DD');
     var queryNASA = 'https://api.nasa.gov/planetary/apod?api_key=Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1&hd=TRUE&date=' + today
-    // code to query the Nasa image of the day
+
     // Needs to be called and added to modal before modal is called so it doesn't have to load
     $.ajax({
         url: queryNASA,
@@ -167,7 +170,6 @@ $(document).ready(function () {
     $(document).on('click', '.delete', function () {
         $('#modal-id').removeClass('is-active');
     });
-
     /* End - To show Nasa Image of the day   */
 
     // /* Start - To show the fact of the day */
@@ -195,12 +197,10 @@ $(document).ready(function () {
         });
         $(document).on('click', '.delete', function () {
             $('.fact-modal').removeClass('is-active')
-
-        })
-    })
+        });
+    });
     /* End - To show the fact of the day */
 });
-
 
 /************************************ User defined functions  /************************************/
 function generateURL(url, params) {
@@ -262,7 +262,7 @@ function searchVideos(searchTerm) {
             playerInfoList.push(videoObj);
         });
 
-        $(".is-16by9").toggle();
+        $(".is-16by9").css("display", "block");
 
         onYouTubePlayerAPIReady();
 
@@ -284,7 +284,6 @@ function searchVideos(searchTerm) {
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 }
 
 function escapeRegExp(string) {
@@ -304,17 +303,3 @@ function sanitize(string) {
     return string.replace(reg, (match) => (map[match]));
 }
 /************************************ User defined functions  /************************************/
-
-// Scroll Button Code
-var btn = $('#scrollButton');
-$(window).scroll(function () {
-    if ($(window).scrollTop() > 300) {
-        btn.addClass('show');
-    } else {
-        btn.removeClass('show');
-    }
-});
-btn.on('click', function (event) {
-    event.preventDefault();
-    $('html, body').animate({ scrollTop: 0 }, '300');
-});
