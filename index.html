@@ -68,62 +68,71 @@
                     <button class="delete" aria-label="close"></button>
                 </header>
                 <section class="modal-card-body">
-                    <form action="" name="registration">
-                        <div id="errorMsgDiv"></div>
-                        <div class="field">
-                            <label class="label">First Name</label>
-                            <p class="control has-icons-left">
-                                <input id="firstname" name="firstname" class="input" type="text" placeholder="Firstname"
-                                    autocomplete="off">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <label class="label">Last Name</label>
-                            <p class="control has-icons-left">
-                                <input id="lastname" name="lastname" class="input" type="text" placeholder="Lastname"
-                                    autocomplete="off">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <label class="label">Email Address</label>
-                            <p class="control has-icons-left">
-                                <input id="email" name="email" class="input" type="email" placeholder="Email Address"
-                                    autocomplete="off">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <label class="label">Password</label>
-                            <p class="control has-icons-left">
-                                <input id="password" name="password" class="input" type="password"
-                                    placeholder="Password" autocomplete="off">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-lock"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <label class="label">Confirm Password</label>
-                            <p class="control has-icons-left">
-                                <input id="password_confirm" name="password_confirm" class="input" type="password"
-                                    placeholder="Confirm Password" autocomplete="off">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-lock"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="start">
-                            <button id="sign-up-save-btn" type="submit" class="button is-link">Sign Up</button>
-                        </div>
-                    </form>
+                    <div id="errorMsgDiv"></div>
+                    <div id="signup-div">
+                        <form action="" name="registration">
+                            <div class="field">
+                                <label class="label">First Name</label>
+                                <p class="control has-icons-left">
+                                    <input id="firstname" name="firstname" class="input" type="text"
+                                        placeholder="Firstname" autocomplete="off">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <label class="label">Last Name</label>
+                                <p class="control has-icons-left">
+                                    <input id="lastname" name="lastname" class="input" type="text"
+                                        placeholder="Lastname" autocomplete="off">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <label class="label">Email Address</label>
+                                <p class="control has-icons-left">
+                                    <input id="email" name="email" class="input" type="email"
+                                        placeholder="Email Address" autocomplete="off">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <label class="label">Password</label>
+                                <p class="control has-icons-left">
+                                    <input id="password" name="password" class="input" type="password"
+                                        placeholder="Password" autocomplete="off">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <label class="label">Confirm Password</label>
+                                <p class="control has-icons-left">
+                                    <input id="password_confirm" name="password_confirm" class="input" type="password"
+                                        placeholder="Confirm Password" autocomplete="off">
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <article class="message is-danger">
+                                <div class="message-body is-size-7">
+                                    This site is optimized to work with third party cookies. Please allow site to save
+                                    and
+                                    read cookie data.
+                                </div>
+                            </article>
+                            <div class="start">
+                                <button id="sign-up-save-btn" type="submit" class="button is-link">Sign Up</button>
+                            </div>
+                        </form>
+                    </div>
                 </section>
                 <footer class="modal-card-foot"> </footer>
             </div>
