@@ -36,11 +36,9 @@ $(document).ready(function () {
     /* check the user state in firebase has changed i.e user is signed in or signed out */
     //var userData;
     firebase.auth().onAuthStateChanged((user) => {
-        //console.log(user);
         if (user) {
             //var userData = firebase.auth().currentUser; //userData.uid
             //console.log(user.email);
-            console.log(user);
             var uname = (user.displayName) ? user.displayName : sessionStorage.getItem("uName");
             showUser(uname);
         } else {
@@ -60,7 +58,7 @@ function showUser(uName) {
     $("#login-btn").hide();
     $("#sign-up-btn").hide();
     $("#welcomeUser").text("Welcome " + uName);
-    $('.signup-modal').removeClass('is-active');
+    //$('.signup-modal').removeClass('is-active');
     $('.login-modal').removeClass('is-active');
     $(".loginBox").html('<p class="control"><button id="logout-btn" class="button is-link">Logout</button></p>');
 }
@@ -79,6 +77,9 @@ function showErrorMessage(error, errorDiv, msgtype = 'is-danger') {
 }
 
 function showSignUpModal() {
+    $("#signup-div").show();
+    $("form[name='registration']").trigger("reset");
+    $("#errorMsgDiv").empty();
     $('.signup-modal').addClass('is-active');
     $('.signup-modal').addClass('is-clipped');
 }
@@ -190,7 +191,6 @@ function save() {
                 password: $("#password").val()
             }
 
-            console.log(userObj);
             firebase.auth().createUserWithEmailAndPassword(userObj.email, userObj.password)
                 .catch(function (error) {
                     // Handle Errors here.
@@ -199,12 +199,9 @@ function save() {
                     if (errorCode == 'auth/weak-password') {
                         alert('The password is too weak.');
                     } else {
-                        //alert(errorMessage);
                         showErrorMessage(errorMessage, 'errorMsgDiv');
                     }
-                    //console.log(error);
                 }).then(function (response) {
-                    //console.log(response);
                     if (response) {
                         if (response.additionalUserInfo.isNewUser == true && response.operationType == "signIn") {
                             var uName = userObj.firstname + " " + userObj.lastname;
@@ -212,11 +209,9 @@ function save() {
                                 displayName: uName
                             });
                             sessionStorage.setItem("uName", uName);
-                            //sessionStorage.setItem("uId", response.user.uid);
-                            //showUser(uName);
-                            //console.log(uName);
+                            showErrorMessage("You have been successfully signed up!!", "errorMsgDiv", "is-success");
+                            $("#signup-div").hide();
                         }
-                        //console.log(response.user);
                     }
                 });
         }
@@ -227,12 +222,10 @@ function logout() {
     firebase.auth().signOut().then(function () {
         // Sign-out successful.
         sessionStorage.clear();
-        console.log("signed out");
         showLoginBox();
     }).catch(function (error) {
         // An error happened.
         console.log(error);
-        //showErrorMessage('Oops!! Something went wrong. Please try again later', 'errorMsgLogoutDiv');
     });
 }
 
