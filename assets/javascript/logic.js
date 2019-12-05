@@ -293,3 +293,16 @@ function sanitize(string) {
 }
 /************************************ User defined functions  /************************************/
 
+// Scroll Button Code
+var btn = $('#scrollButton');
+$(window).scroll(function () {
+    if ($(window).scrollTop() > 300) {
+        btn.addClass('show');
+    } else {
+        btn.removeClass('show');
+    }
+});
+btn.on('click', function (event) {
+    event.preventDefault();
+    $('html, body').animate({ scrollTop: 0 }, '300');
+});
