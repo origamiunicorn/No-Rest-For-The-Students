@@ -47,6 +47,7 @@ The NASA Image of the Day button opens a modal which displays the Astronomy Pict
 
 ## Libraries Used
 * Bulma CSS
+* Bulma Modal FX
 * FontAwesome
 * jQuery
 * jQuery Validate
