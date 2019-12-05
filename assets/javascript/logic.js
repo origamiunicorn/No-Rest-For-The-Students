@@ -164,28 +164,34 @@ $(document).ready(function () {
 
     /* End - To show Nasa Image of the day   */
 
-    /* Start - To show the fact of the day */
+    // /* Start - To show the fact of the day */
     $('.fact-btn').on('click', function () {
         var todayInSlashes = moment().format('MM/DD')
         var todayInMoreSlashes = moment().format('MM/DD/YYYY')
-        var queryNumber = 'https://numbersapi.com/' + todayInSlashes + '/date'
+        var queryNumber = 'https://numbersapi.p.rapidapi.com/' + todayInSlashes + '/date?fragment=true&json=true'
         $('.fact-title').html('Today is ' + todayInMoreSlashes);
-        $.ajax({
-            url: queryNumber,
-            method: "GET"
-        }).then(function (response) {
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": queryNumber,
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "numbersapi.p.rapidapi.com",
+                "x-rapidapi-key": "b731d1f1fcmsh04a0830c0616b84p157f0cjsn27aaabd6b575"
+            }
+        }
+
+        $.ajax(settings).then(function (response) {
+            console.log(response);
             $('.fact-modal').addClass('is-active')
             $('.fact-modal').addClass('is-clipped')
-            $('.rando-fact').html(response);
+            $('.rando-fact').html('On this day in ' + response.year + ', ' + response.text + '.');
+        });
+        $(document).on('click', '.delete', function () {
+            $('.fact-modal').removeClass('is-active')
+
         })
-
     })
-
-    $(document).on('click', '.delete', function () {
-        $('.fact-modal').removeClass('is-active')
-
-    })
-
     /* End - To show the fact of the day */
 });
 
