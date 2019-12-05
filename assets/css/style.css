@@ -38,7 +38,7 @@ form.error {
   color: #ff0000;
 }
 
-.login-box-css{
+.login-box-css {
   padding-left: 25px;
 }
 
@@ -54,7 +54,6 @@ form.error {
   background-color: rgb(0,0,0); 
   background-color: rgba(0,0,0,0.4); 
   padding-top: 60px;
-  
 }
 
 .modal-content {
