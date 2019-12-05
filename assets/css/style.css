@@ -34,7 +34,7 @@
   margin-bottom: 25px;
 }
 
-form.error {
+form .error {
   color: #ff0000;
 }
 

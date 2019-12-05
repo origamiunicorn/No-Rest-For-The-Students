@@ -38,7 +38,6 @@ $(document).ready(function () {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             //var userData = firebase.auth().currentUser; //userData.uid
-            //console.log(user.email);
             var uname = (user.displayName) ? user.displayName : sessionStorage.getItem("uName");
             showUser(uname);
         } else {
@@ -130,15 +129,12 @@ function login() {
                 password: $("#login_password").val()
             }
 
-            console.log(userObj);
             firebase.auth().signInWithEmailAndPassword(userObj.email, userObj.password).then(function (response) {
-                console.log(response);
                 showUser(response.user.displayName);
             }).catch(function (error) {
                 // Handle Errors here.
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                console.log(error);
                 showErrorMessage(errorMessage, "errorMsgLoginDiv");
             });
         }
@@ -197,7 +193,7 @@ function save() {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     if (errorCode == 'auth/weak-password') {
-                        alert('The password is too weak.');
+                        showErrorMessage('The password is too weak.', 'errorMsgDiv');
                     } else {
                         showErrorMessage(errorMessage, 'errorMsgDiv');
                     }
@@ -225,7 +221,6 @@ function logout() {
         showLoginBox();
     }).catch(function (error) {
         // An error happened.
-        console.log(error);
     });
 }
 
