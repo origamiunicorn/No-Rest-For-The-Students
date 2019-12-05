@@ -168,7 +168,7 @@ $(document).ready(function () {
     $('.fact-btn').on('click', function () {
         var todayInSlashes = moment().format('MM/DD')
         var todayInMoreSlashes = moment().format('MM/DD/YYYY')
-        var queryNumber = 'http://numbersapi.com/' + todayInSlashes + '/date'
+        var queryNumber = 'https://numbersapi.com/' + todayInSlashes + '/date'
         $('.fact-title').html('Today is ' + todayInMoreSlashes);
         $.ajax({
             url: queryNumber,
