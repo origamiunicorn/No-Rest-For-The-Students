@@ -197,7 +197,7 @@ function save() {
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     if (errorCode == 'auth/weak-password') {
-                        alert('The password is too weak.');
+                        showErrorMessage('The password is too weak.', 'errorMsgDiv');
                     } else {
                         showErrorMessage(errorMessage, 'errorMsgDiv');
                     }
