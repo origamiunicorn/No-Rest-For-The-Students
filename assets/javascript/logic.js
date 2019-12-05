@@ -2,7 +2,6 @@ $(document).ready(function () {
     newsAPI('none');
     $(this).scrollTop(0);
 
-
     var searchWithin;
     var searchTerm;
 
@@ -35,12 +34,23 @@ $(document).ready(function () {
             $(this).append('<div id="player' + (index++) + '" class="has-ratio"></div>');
         });
         searchVideos(searchTerm);
-
     });
 
-    /* 
-        Code to query the CurrentsAPI 
-    */
+    // Scroll Button Code
+    var btn = $('#scrollButton');
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+    btn.on('click', function (event) {
+        event.preventDefault();
+        $('html, body').animate({ scrollTop: 0 }, '300');
+    });
+
+    /*  Code to query the CurrentsAPI */
     function currentsAPI(search) {
         var apikey = '&apiKey=DZDcAWMI7tHZgDL-0HsY9xdV2PP2WERqSJ4RodnZ84DGyEwJ';
         var queryURL;
@@ -81,9 +91,7 @@ $(document).ready(function () {
         });
     }
 
-    /*  
-    Code to query the NewsAPI
-    */
+    /* Code to query the NewsAPI */
     function newsAPI(search) {
         var apiNews = '&apiKey=c2704563e1294b96ae07dbe18fda2af6';
         var keyword = search;
@@ -125,12 +133,10 @@ $(document).ready(function () {
                     '<hr />' +
                     '</article>')
             }
-        })
+        });
     }
 
-
     /* Start - To show Nasa Image of the day   */
-
     var today = moment().format('YYYY-MM-DD');
     var queryNASA = 'https://api.nasa.gov/planetary/apod?api_key=Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1&hd=TRUE&date=' + today
     // code to query the Nasa image of the day
@@ -161,7 +167,6 @@ $(document).ready(function () {
     $(document).on('click', '.delete', function () {
         $('#modal-id').removeClass('is-active');
     });
-
     /* End - To show Nasa Image of the day   */
 
     // /* Start - To show the fact of the day */
@@ -194,7 +199,6 @@ $(document).ready(function () {
     })
     /* End - To show the fact of the day */
 });
-
 
 /************************************ User defined functions  /************************************/
 function generateURL(url, params) {
@@ -256,7 +260,7 @@ function searchVideos(searchTerm) {
             playerInfoList.push(videoObj);
         });
 
-        $(".is-16by9").toggle();
+        $(".is-16by9").css("display", "block");
 
         onYouTubePlayerAPIReady();
 
@@ -278,7 +282,6 @@ function searchVideos(searchTerm) {
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
 }
 
 function escapeRegExp(string) {
@@ -298,17 +301,3 @@ function sanitize(string) {
     return string.replace(reg, (match) => (map[match]));
 }
 /************************************ User defined functions  /************************************/
-
-// Scroll Button Code
-var btn = $('#scrollButton');
-$(window).scroll(function () {
-    if ($(window).scrollTop() > 300) {
-        btn.addClass('show');
-    } else {
-        btn.removeClass('show');
-    }
-});
-btn.on('click', function (event) {
-    event.preventDefault();
-    $('html, body').animate({ scrollTop: 0 }, '300');
-});
