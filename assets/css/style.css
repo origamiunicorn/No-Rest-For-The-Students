@@ -1,3 +1,13 @@
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-content {
+  flex: 1;
+}
+
 .headerImage {
   width: 50px;
   height: 50px;
@@ -24,24 +34,14 @@
   margin-bottom: 25px;
 }
 
-form .error {
+form.error {
   color: #ff0000;
-}
-
-.site {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
-.site-content {
-  flex: 1;
 }
 
 .login-box-css{
   padding-left: 25px;
 }
-/* The Modal (background) */
+
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -57,17 +57,14 @@ form .error {
   
 }
 
-/* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 5px auto; /* 15% from the top and centered */
+  margin: 5px auto;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%; 
 }
 
-/* The Close Button */
 .close {
-  /* Position it in the top right corner outside of the modal */
   position: absolute;
   right: 25px;
   top: 0;
@@ -76,14 +73,12 @@ form .error {
   font-weight: bold;
 }
 
-/* Close button on hover */
 .close:hover,
 .close:focus {
   color: red;
   cursor: pointer;
 }
 
-/* Add Zoom Animation */
 .animate {
   -webkit-animation: animatezoom 0.6s;
   animation: animatezoom 0.6s
@@ -100,12 +95,12 @@ form .error {
 }
 
 @media screen and (min-width: 768px) {
-.searchBarDiv {
-  width: 200px;
-}
-.screenSizeSearch {
-  flex-grow: 11;
-}
+  .searchBarDiv {
+    width: 200px;
+  }
+  .screenSizeSearch {
+    flex-grow: 11;
+  }
 }
 
 @media screen and (max-width: 768px) {
