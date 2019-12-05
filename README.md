@@ -5,6 +5,8 @@ On initial page load, ten of the most recent articles collected by CurrentsAPI w
 
 Users may expand or collapse the Related Articles or Related Videos sections on selection of the header element. Users may also create a login for the app by selecting the Sign Up button, or if the user has a login and is returning to the web app, sign into their account by selecting the Login button. They may also generate a modal with a random fact of the day or with NASA's astronomical picture of the day by selecting the corresponding buttons.
 
+When a user has scrolled three hundred pixels down the page, a button will show in the lower right corner of their viewport, with a double chevron pointing upward. Selecting this button will return the user to the top of the page with a scroll.
+
 ## Search Functions
 We built this web app with a focus on being mobile responsive first. This web app allows users to get a quick read on articles related to their keyword(s) from different information sources depending on which radio button is selected.
 
@@ -64,3 +66,4 @@ The NASA Image of the Day button opens a modal which displays the Astronomy Pict
 * Pagination of search results.
 * Proper Historical Search, if possible through the APIs being used at present.
 * Saved search terms for logged in users, and a method to select a past search term to return new results using the same search parameters (keyword and the radio button selected to search for that term).
+* Responsive structuring of the containing elements for YouTube videos so that on large viewports they show two in a row and in smaller viewports stack on top and fill the containing spaces.
