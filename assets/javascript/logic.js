@@ -1,9 +1,8 @@
 $(document).ready(function () {
-    //This will bring you back to top of page when the page is refreshed
-    $(document).ready(function () {
-        $(this).scrollTop(0);
-    });
-    // Get on-click radio button value stored into variable searchWithin. Do we want to use this to guide which API to run a search from?
+    newsAPI('none');
+    $(this).scrollTop(0);
+
+
     var searchWithin;
     var searchTerm;
 
@@ -39,7 +38,6 @@ $(document).ready(function () {
 
     });
 
-
     /* 
         Code to query the CurrentsAPI 
     */
@@ -48,22 +46,18 @@ $(document).ready(function () {
         var queryURL;
         var lang = '&language=en'
         var keywords = search;
+
         queryURL = 'https://api.currentsapi.services/v1/search?keywords=' + keywords + lang + apikey;
 
-        console.log(queryURL)
-        console.log(startDate)
-        console.log(endDate)
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            console.log(response);
             for (var i = 0; i < 10; i++) {
                 var publish = moment(response.news[i].published);
-
                 var publishDate = publish.year() + '/' + (publish.month() + 1) + '/' + publish.date();
                 var author;
-                console.log(response.news[i].author)
+
                 if (response.news[i].author == null) {
                     author = 'Associated Press';
                 }
@@ -91,18 +85,28 @@ $(document).ready(function () {
     Code to query the NewsAPI
     */
     function newsAPI(search) {
-        // http://lorempixel.com/g/400/200/
         var apiNews = '&apiKey=c2704563e1294b96ae07dbe18fda2af6';
         var keyword = search;
-        var queryNews = 'https://newsapi.org/v2/everything?q=' + keyword + apiNews
+        var queryNews;
+        if (search === 'none') {
+            queryNews = 'https://newsapi.org/v2/top-headlines?country=us' + apiNews;
+        }
+        else {
+
+            queryNews = 'https://newsapi.org/v2/everything?q=' + keyword + apiNews
+        }
         $.ajax({
             url: queryNews,
             method: "GET"
         }).then(function (response) {
-            console.log(response)
+
+
+
             for (var i = 0; i < 10; i++) {
+                var publish = moment(response.articles[i].publishedAt);
+                var publishDate = publish.year() + '/' + (publish.month() + 1) + '/' + publish.date();
                 var author;
-                console.log(response.articles[i].author)
+
                 if (response.articles[i].author == null) {
                     author = 'Associated Press';
                 }
@@ -113,7 +117,7 @@ $(document).ready(function () {
                 $('.current-articles').append('<article class="message is-info">' +
                     '<div class="columns">' +
                     '<div class="column is-1">' + '<img src="' + response.articles[i].urlToImage/*image url goes here */ + '" />' + '</div>' +
-                    '<div class="column is-11">' + '<p class="title">' + response.articles[i].title + '</p>' + '<p class="subtitle"> Written By: ' + author + '</p>' +
+                    '<div class="column is-11">' + '<p class="title">' + response.articles[i].title + '</p>' + '<p class="subtitle"> Written By: ' + author + '</p>' + '<p class="subtitle" style="margin-top:-20px">' + 'Published on: ' + publishDate + '</p>' +
                     '</div>' +
                     '</div>' +
                     '<div class="message-body">' + response.articles[i].description + '</div>' + '<br />' +
@@ -135,7 +139,7 @@ $(document).ready(function () {
         url: queryNASA,
         method: "GET"
     }).then(function (response) {
-        console.log(response)
+
         if (response.media_type == 'video') {
             $('.nasa-img').html('<iframe width="900" height="900" src="' + response.url + '">' + 'Your browser does not support this video type' + '</iframe>');
         }
@@ -149,11 +153,12 @@ $(document).ready(function () {
     $('.nasa-btn').on('click', function () {
         $('#modal-id').addClass('is-active');
         $('#modal-id').addClass('is-clipped');
+        $('button').addClass('close-style');
         $('.nasa-modal').attr('class', 'is-active');
         $('.nasa-modal').attr('class', 'is-clipped');
     });
 
-    $(document).on('click', '.modal-close', function () {
+    $(document).on('click', '.delete', function () {
         $('#modal-id').removeClass('is-active');
     });
 
@@ -180,10 +185,7 @@ $(document).ready(function () {
         $('.fact-modal').removeClass('is-active')
 
     })
-    $(document).on('click', '.close-button', function () {
-        $('.fact-modal').removeClass('is-active')
 
-    })
     /* End - To show the fact of the day */
 });
 
@@ -218,7 +220,7 @@ function searchWiki(searchTerm) {
             var msgDiv = $("<div class='message-body'>" + results[index].snippet + "</div>");
             $(wikiArticle).append(colDiv, msgDiv);
             $(wikiArticle).append("<br />");
-            $(wikiArticle).append("<a href='https://en.wikipedia.org/wiki/" + results[index].title + "' target='_blank'>" + results[index].title + "</a>");
+            $(wikiArticle).append("<a href='https://en.wikipedia.org/wiki/" + results[index].title + "' target='_blank'>" + results[index].title + " Wiki </a>");
             $('.current-articles').append("<hr />");
         });
     });
@@ -291,12 +293,16 @@ function sanitize(string) {
 }
 /************************************ User defined functions  /************************************/
 
-// Get the modal
-var modal = document.getElementById('id01');
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+// Scroll Button Code
+var btn = $('#scrollButton');
+$(window).scroll(function () {
+    if ($(window).scrollTop() > 300) {
+        btn.addClass('show');
+    } else {
+        btn.removeClass('show');
     }
-}
+});
+btn.on('click', function (event) {
+    event.preventDefault();
+    $('html, body').animate({ scrollTop: 0 }, '300');
+});
