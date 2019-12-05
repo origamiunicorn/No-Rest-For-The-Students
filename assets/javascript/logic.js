@@ -54,7 +54,7 @@ $(document).ready(function () {
     function currentsAPI(search) {
         var apikey = '&apiKey=DZDcAWMI7tHZgDL-0HsY9xdV2PP2WERqSJ4RodnZ84DGyEwJ';
         var queryURL;
-        var lang = '&language=en'
+        var lang = '&language=en';
         var keywords = search;
 
         queryURL = 'https://api.currentsapi.services/v1/search?keywords=' + keywords + lang + apikey;
@@ -86,7 +86,7 @@ $(document).ready(function () {
                     '<div class="message-body">' + response.news[i].description + '</div>' + '<br />' +
                     '<a href="' + response.news[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
                     '<hr />' +
-                    '</article>')
+                    '</article>');
             }
         });
     }
@@ -101,15 +101,12 @@ $(document).ready(function () {
         }
         else {
 
-            queryNews = 'https://newsapi.org/v2/everything?q=' + keyword + apiNews
+            queryNews = 'https://newsapi.org/v2/everything?q=' + keyword + apiNews;
         }
         $.ajax({
             url: queryNews,
             method: "GET"
         }).then(function (response) {
-
-
-
             for (var i = 0; i < 10; i++) {
                 var publish = moment(response.articles[i].publishedAt);
                 var publishDate = publish.year() + '/' + (publish.month() + 1) + '/' + publish.date();
@@ -131,7 +128,7 @@ $(document).ready(function () {
                     '<div class="message-body">' + response.articles[i].description + '</div>' + '<br />' +
                     '<a href="' + response.articles[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
                     '<hr />' +
-                    '</article>')
+                    '</article>');
             }
         });
     }
@@ -139,7 +136,7 @@ $(document).ready(function () {
     /* Start - To show Nasa Image of the day   */
     var today = moment().format('YYYY-MM-DD');
     var queryNASA = 'https://api.nasa.gov/planetary/apod?api_key=Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1&hd=TRUE&date=' + today
-    // code to query the Nasa image of the day
+
     // Needs to be called and added to modal before modal is called so it doesn't have to load
     $.ajax({
         url: queryNASA,
@@ -194,9 +191,8 @@ $(document).ready(function () {
         });
         $(document).on('click', '.delete', function () {
             $('.fact-modal').removeClass('is-active')
-
-        })
-    })
+        });
+    });
     /* End - To show the fact of the day */
 });
 
