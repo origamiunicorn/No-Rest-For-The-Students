@@ -294,7 +294,8 @@ function searchVideos(searchTerm) {
                 player = new YT.Player('player' + [i], {
                     height: '360',
                     width: '640',
-                    videoId: playerInfoList[i].videoId
+                    videoId: playerInfoList[i].videoId,
+                    type: 'video'
                 });
             }
         }
@@ -315,9 +316,9 @@ function searchVideos(searchTerm) {
 var modal = document.getElementById('id01');
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
