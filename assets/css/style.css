@@ -42,6 +42,46 @@ form.error {
   padding-left: 25px;
 }
 
+/* Scroll Button Styling */
+#scrollButton {
+  display: inline-block;
+  background-color: #82DDF0;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  margin: 5px;
+  position: fixed;
+  bottom: 1px;
+  right: 1px;
+  transition: background-color .3s;
+  z-index: 1000;
+  transition: background-color .3s, 
+  opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+}
+#scrollButton::after {
+  content: "\f102";
+  font-family: "Font Awesome 5 Pro";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+#scrollButton:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#scrollButton:active {
+  background-color: #82DDF0;
+}
+#scrollButton.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 @media screen and (min-width: 768px) {
   .searchBarDiv {
     width: 200px;
