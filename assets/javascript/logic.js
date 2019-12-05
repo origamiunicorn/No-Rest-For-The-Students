@@ -6,7 +6,6 @@ $(document).ready(function () {
     // Get on-click radio button value stored into variable searchWithin. Do we want to use this to guide which API to run a search from?
     var searchWithin;
     var searchTerm;
-    var searchTermSmall;
 
     //This is our main search button onclick event
     $("#searchButton").on("click", function (event) {
@@ -14,9 +13,9 @@ $(document).ready(function () {
         $('.current-articles').empty();
         searchWithin = $("input[type='radio']:checked").val();
         searchTerm = $("#searchTermSmall").val().trim();
-        console.log(searchWithin + " is checked!");
-        console.log("our current search term is: " + searchTerm);
-        console.log("our current search term is: " + searchTermSmall);
+        searchTerm = escapeRegExp(searchTerm);
+        searchTerm = sanitize(searchTerm);
+
         $(".searchTerm").val(""); // Clears text input box
 
         if (searchWithin == 'currentNews') {
@@ -24,15 +23,12 @@ $(document).ready(function () {
         }
 
         if (searchWithin == 'historicalEvents') {
-
             currentsAPI(searchTerm);
         }
 
         if (searchWithin == "wikipediaInfo") {
             searchWiki(searchTerm);
         }
-
-
 
         // code to empty the youtube video divs and recreate the player divs 
         $('.video-pulls .image').each(function (index) {
@@ -49,7 +45,6 @@ $(document).ready(function () {
     */
     function currentsAPI(search) {
         var apikey = '&apiKey=DZDcAWMI7tHZgDL-0HsY9xdV2PP2WERqSJ4RodnZ84DGyEwJ';
-        var type; //Will be an integer: 1 for news, 2 for articles, 3 for discussion content, Default 1
         var queryURL;
         var lang = '&language=en'
         var keywords = search;
@@ -63,8 +58,6 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             console.log(response);
-
-
             for (var i = 0; i < 10; i++) {
                 var publish = moment(response.news[i].published);
 
@@ -90,14 +83,9 @@ $(document).ready(function () {
                     '<a href="' + response.news[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
                     '<hr />' +
                     '</article>')
-
             }
-
-
         });
     }
-
-
 
     /*  
     Code to query the NewsAPI
@@ -111,9 +99,7 @@ $(document).ready(function () {
             url: queryNews,
             method: "GET"
         }).then(function (response) {
-
             console.log(response)
-
             for (var i = 0; i < 10; i++) {
                 var author;
                 console.log(response.articles[i].author)
@@ -134,9 +120,7 @@ $(document).ready(function () {
                     '<a href="' + response.articles[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
                     '<hr />' +
                     '</article>')
-
             }
-
         })
     }
 
@@ -201,14 +185,12 @@ $(document).ready(function () {
 
     })
     /* End - To show the fact of the day */
-
 });
 
 
 /************************************ User defined functions  /************************************/
 function generateURL(url, params) {
     if (params) url += $.param(params);
-    //console.log(url);
     return url;
 }
 
@@ -272,7 +254,6 @@ function searchVideos(searchTerm) {
 
         function onYouTubePlayerAPIReady() {
             for (var i = 0; i < playerInfoList.length; i++) {
-                //console.log(playerInfoList[i].videoId);
                 player = new YT.Player('player' + [i], {
                     height: '360',
                     width: '640',
@@ -291,9 +272,25 @@ function searchVideos(searchTerm) {
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 }
+
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
+function sanitize(string) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return string.replace(reg, (match) => (map[match]));
+}
 /************************************ User defined functions  /************************************/
 
-// Get the modal
 // Get the modal
 var modal = document.getElementById('id01');
 
@@ -303,4 +300,3 @@ window.onclick = function (event) {
         modal.style.display = "none";
     }
 }
-
