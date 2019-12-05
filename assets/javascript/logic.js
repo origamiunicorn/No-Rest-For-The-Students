@@ -1,10 +1,14 @@
 $(document).ready(function () {
-
+    //This will bring you back to top of page when the page is refreshed
+    $(document).ready(function () {
+        $(this).scrollTop(0);
+    });
     // Get on-click radio button value stored into variable searchWithin. Do we want to use this to guide which API to run a search from?
     var searchWithin;
     var searchTerm;
     var searchTermSmall;
 
+    //This is our main search button onclick event
     $("#searchButton").on("click", function (event) {
         event.preventDefault();
         $('.current-articles').empty();
@@ -20,6 +24,7 @@ $(document).ready(function () {
         }
 
         if (searchWithin == 'historicalEvents') {
+
             currentsAPI(searchTerm);
         }
 
@@ -44,20 +49,26 @@ $(document).ready(function () {
     */
     function currentsAPI(search) {
         var apikey = '&apiKey=DZDcAWMI7tHZgDL-0HsY9xdV2PP2WERqSJ4RodnZ84DGyEwJ';
-        var startDate; //Will have to have YYYY-MM-dd format 
-        var endDate; // Will have to have YYYY-MM-dd format 
         var type; //Will be an integer: 1 for news, 2 for articles, 3 for discussion content, Default 1
-
+        var queryURL;
         var lang = '&language=en'
         var keywords = search;
-        var queryURL = 'https://api.currentsapi.services/v1/search?keywords=' + keywords + lang + apikey;
+        queryURL = 'https://api.currentsapi.services/v1/search?keywords=' + keywords + lang + apikey;
 
+        console.log(queryURL)
+        console.log(startDate)
+        console.log(endDate)
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
             console.log(response);
+
+
             for (var i = 0; i < 10; i++) {
+                var publish = moment(response.news[i].published);
+
+                var publishDate = publish.year() + '/' + (publish.month() + 1) + '/' + publish.date();
                 var author;
                 console.log(response.news[i].author)
                 if (response.news[i].author == null) {
@@ -69,10 +80,12 @@ $(document).ready(function () {
 
                 $('.current-articles').append('<article class="message is-info">' +
                     '<div class="columns">' +
-                    '<div class="column is-1">' + '<img src="' + response.news[i].image/*image url goes here */ + '" />' + '</div>' +
-                    '<div class="column is-11">' + '<p class="title">' + response.news[i].title + '</p>' + '<p class="subtitle"> Written By: ' + author + '</p>' +
+                    '<div class="column is-1">' + '<img src="' + response.news[i].image/*image url goes here */ + '" />' +
+                    '</div>' +
+                    '<div class="column is-11">' + '<p class="title">' + response.news[i].title + '</p>' + '<p class="subtitle"> Written By: ' + author + '</p>' + '<p class="subtitle" style="margin-top:-20px">' + 'Published on: ' + publishDate + '</p>' +
                     '</div>' +
                     '</div>' +
+
                     '<div class="message-body">' + response.news[i].description + '</div>' + '<br />' +
                     '<a href="' + response.news[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
                     '<hr />' +
@@ -80,16 +93,9 @@ $(document).ready(function () {
 
             }
 
-            //We also want to make the response.news.published into a moment so that we can format it and display it
-            // if (response.news.image !== 'none') {
-            //     $('.article-img').append('<img src="' + response.news[3].image + '">');
-            //     $('.article-info').append('<h1 class="article-title">' + response.news[3].title + '</h1>' + '<h3 class=article-by> By ' + response.news[3].author + '</h3>')
-            //     $('.article-snippet').append('<p>' + response.news[3].description + '</p>')
-            //     $('.article-link').append('<a href="' + response.news[3].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>')
-            // }
+
         });
     }
-
 
 
 
@@ -128,46 +134,17 @@ $(document).ready(function () {
                     '<a href="' + response.articles[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
                     '<hr />' +
                     '</article>')
-                // $('.article-img').append('<img src="' + response.articles[3].urlToImage + '">');
-                // $('.article-info').append('<h1 class="article-title">' + response.articles[3].title + '</h1>' + '<h3 class=article-by> By ' + response.articles[3].author + '</h3>')
-                // $('.article-snippet').append('<p>' + response.articles[3].description + '</p>')
-                // $('.article-link').append('<a href="' + response.articles[3].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>')
+
             }
 
         })
     }
 
-    //     <article class="message is-info">
-    //     <div class="columns">
-    //         <div class="column is-1">
-    //             <img src="https://picsum.photos/id/970/128/128" />
-    //         </div>
-    //         <div class="column is-11">
-    //             <h1 class="title">Article Title</h1>
-    //             <h2 class="subtitle">by Some Author</h2>
-    //         </div>
-    //     </div>
-    //     <div class="message-body">
-    //         I am a snippet of information from an article. Lorem ipsum dolor sit amet, consectetur
-    //         adipiscing elit, sed do eiusmod tempor incididunt ut
-    //         labore
-    //         et
-    //         dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-    //         ut
-    //         aliquip
-    //         ex ea commodo consequat.
-    //     </div>
-    //     <br />
-    //     <a href="#">Link to Article.</a>
-    // </article> 
-
-
-
 
     /* Start - To show Nasa Image of the day   */
 
     var today = moment().format('YYYY-MM-DD');
-    var queryNASA = 'https://api.nasa.gov/planetary/apod?api_key=Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1&hd=TRUE$date=' + today
+    var queryNASA = 'https://api.nasa.gov/planetary/apod?api_key=Ta10d3nY7WbfA7PR7VNlwYveTL1kVzMDe4LUm5V1&hd=TRUE&date=' + today
     // code to query the Nasa image of the day
     // Needs to be called and added to modal before modal is called so it doesn't have to load
     $.ajax({
@@ -175,7 +152,12 @@ $(document).ready(function () {
         method: "GET"
     }).then(function (response) {
         console.log(response)
-        $('.nasa-img').html('<img src="' + response.hdurl + '">');
+        if (response.media_type == 'video') {
+            $('.nasa-img').html('<iframe width="900" height="900" src="' + response.url + '">' + 'Your browser does not support this video type' + '</iframe>');
+        }
+        else {
+            $('.nasa-img').html('<img src="' + response.hdurl + '">');
+        }
         $('.nasa-desc').html(response.explanation);
 
     });
