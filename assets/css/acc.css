@@ -15,7 +15,7 @@
   .iconAcc::before {
     font-family: "Font Awesome 5 Pro";
     font-weight: 900;
-    content: "\f055";
+    content: "\f056";
   }
 
 .accordion-header {
@@ -27,5 +27,5 @@
 }
 
 .active.iconAcc::before {
-    content: "\f056";
+    content: "\f055";
 }

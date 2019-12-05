@@ -12,6 +12,9 @@ $(document).ready(function () {
         $('.current-articles').empty();
         searchWithin = $("input[type='radio']:checked").val();
         searchTerm = $("#searchTermSmall").val().trim();
+        searchTerm = escapeRegExp(searchTerm);
+        searchTerm = sanitize(searchTerm);
+
         $(".searchTerm").val(""); // Clears text input box
 
         if (searchWithin == 'currentNews') {
@@ -19,15 +22,12 @@ $(document).ready(function () {
         }
 
         if (searchWithin == 'historicalEvents') {
-
             currentsAPI(searchTerm);
         }
 
         if (searchWithin == "wikipediaInfo") {
             searchWiki(searchTerm);
         }
-
-
 
         // code to empty the youtube video divs and recreate the player divs 
         $('.video-pulls .image').each(function (index) {
@@ -53,7 +53,6 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-
             for (var i = 0; i < 10; i++) {
                 var publish = moment(response.news[i].published);
                 var publishDate = publish.year() + '/' + (publish.month() + 1) + '/' + publish.date();
@@ -78,14 +77,9 @@ $(document).ready(function () {
                     '<a href="' + response.news[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
                     '<hr />' +
                     '</article>')
-
             }
-
-
         });
     }
-
-
 
     /*  
     Code to query the NewsAPI
@@ -130,9 +124,7 @@ $(document).ready(function () {
                     '<a href="' + response.articles[i].url + '" target=_blank>' + 'Open Article in New Tab' + '</a>' +
                     '<hr />' +
                     '</article>')
-
             }
-
         })
     }
 
@@ -195,7 +187,6 @@ $(document).ready(function () {
     })
 
     /* End - To show the fact of the day */
-
 });
 
 
@@ -284,6 +275,21 @@ function searchVideos(searchTerm) {
 
 }
 
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
 
-
+function sanitize(string) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return string.replace(reg, (match) => (map[match]));
+}
+/************************************ User defined functions  /************************************/
 
