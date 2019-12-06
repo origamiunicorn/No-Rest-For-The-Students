@@ -246,7 +246,7 @@ function searchVideos(searchTerm) {
         data: {
             q: searchTerm,
             part: 'snippet',
-            key: 'AIzaSyDvZJroibDl30fxnmsNsCZO1o-9N-Em5zs',
+            key: 'AIzaSyAWn3ZaRba3nswNEQptNH0n8Yweyuqe9ZA',
             maxResults: 6
         },
         dataType: 'jsonp'
