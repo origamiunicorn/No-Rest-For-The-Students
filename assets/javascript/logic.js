@@ -4,7 +4,13 @@ $(document).ready(function () {
 
     var searchWithin;
     var searchTerm;
-
+    $('.search-bar').keyup(function (event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode === 13) {
+            event.preventDefault();
+            $('.search-btn').click();
+        }
+    })
     //This is our main search button onclick event
     $("#searchButton").on("click", function (event) {
         event.preventDefault();
