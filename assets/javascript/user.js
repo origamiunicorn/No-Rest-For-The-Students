@@ -85,6 +85,7 @@ function showSignUpModal() {
 
 function showLoginModal() {
     $("#forgot-pwd-div").hide();
+    $(".login-title").text("Login");
     $("#login-div").show();
     $('.login-modal').addClass('is-active');
     $('.login-modal').addClass('is-clipped');
@@ -92,6 +93,7 @@ function showLoginModal() {
 
 function showFPModal() {
     $("#login-div").hide();
+    $(".login-title").text("Forgot Password");
     $("#forgot-pwd-div").show();
 }
 
